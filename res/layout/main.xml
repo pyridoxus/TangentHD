@@ -11,6 +11,7 @@
         android:layout_height="320dp"
         android:layout_weight="66"
         android:contentDescription="@string/main_graph"
+        android:longClickable="true"
         android:src="@drawable/example_screen" />
 
     <TextView
