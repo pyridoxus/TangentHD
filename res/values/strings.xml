@@ -7,5 +7,10 @@
     <string name="stringRight">Right Point</string>
     <string name="main_graph">Main Graph</string>
     <string name="equation">y = f(x)</string>
-    
+    <string name="equation_selector">y = f(x)</string>
+	<string name="equation1">y = x ^ 3</string>
+	<string name="equation2">x ^ (2 / 3) + y ^ (2 / 3) = 1</string>
+	<string name="equation3">y = |x ^ 2 – 1|</string>
+	<string name="exit">Exit</string>
+	
 </resources>
