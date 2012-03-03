@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TangentHDActivity!</string>
+    <string name="app_name">TangentHD</string>
+    <string name="stringLeft">Left Point</string>
+    <string name="stringRight">Right Point</string>
+    <string name="main_graph">Main Graph</string>
+    <string name="equation">y = f(x)</string>
+    
+</resources>
