@@ -6,7 +6,7 @@
     android:weightSum="100" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/exampleScreen"
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_weight="66"
