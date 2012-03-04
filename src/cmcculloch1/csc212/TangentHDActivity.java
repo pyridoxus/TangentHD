@@ -40,28 +40,28 @@ public class TangentHDActivity extends Activity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         Context context = getApplicationContext();
-        CharSequence text = "TangentHD";
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(context,
+    			getString(R.string.app_name), duration);
         int m_id = item.getItemId();
 
         switch (m_id) {
-            case R.id.m_equation1:
+            case R.id.m_graphColor:
             	// Will do something else here in case statement in future
-            	text = "Selected equation " + m_id;
-                toast = Toast.makeText(context, text, duration);
+            	toast = Toast.makeText(context,
+            			getString(R.string.s_graphColor), duration);
                 toast.show();
                 return true;
-            case R.id.m_equation2:
+            case R.id.m_leftColor:
             	// Will do something else here in case statement in future
-            	text = "Selected equation " + m_id;
-                toast = Toast.makeText(context, text, duration);
+            	toast = Toast.makeText(context,
+            			getString(R.string.s_leftColor), duration);
                 toast.show();
                 return true;
-            case R.id.m_equation3:
+            case R.id.m_rightColor:
             	// Will do something else here in case statement in future
-            	text = "Selected equation " + m_id;
-                toast = Toast.makeText(context, text, duration);
+            	toast = Toast.makeText(context,
+            			getString(R.string.s_rightColor), duration);
                 toast.show();
                 return true;
             default:

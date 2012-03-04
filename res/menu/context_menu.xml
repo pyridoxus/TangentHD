@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-	<item android:id="@+id/m_equation1"
-		android:title="@string/equation1" />
-	<item android:id="@+id/m_equation2"
-		android:title="@string/equation2" />
-	<item android:id="@+id/m_equation3"
-		android:title="@string/equation3" />
-	<item android:id="@+id/m_equation_exit"
+	<item android:id="@+id/m_graphColor"
+		android:title="@string/s_graphColor" />
+	<item android:id="@+id/m_leftColor"
+		android:title="@string/s_leftColor" />
+	<item android:id="@+id/m_rightColor"
+		android:title="@string/s_rightColor" />
+	<item android:id="@+id/m_exit"
 		android:title="@string/exit" />
 </menu>
