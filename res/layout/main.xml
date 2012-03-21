@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="100" >
 
-	<GraphView
+	<cmcculloch1.csc212.GraphView
        android:id="@+id/graphView"
        android:layout_width="match_parent"
        android:layout_height="0dp"
