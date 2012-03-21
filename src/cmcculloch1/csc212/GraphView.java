@@ -1,11 +1,35 @@
 package cmcculloch1.csc212;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class GraphView extends View {
+	Bitmap bg;	// Background bitmap to hold the more static image of graph
+	Bitmap fg;	// Foreground bitmap to hold the more dynamic image of secants
+
+	public GraphView(Context context) {
+		// TODO Auto-generated method stub
+		super(context);
+	}
+
+	public GraphView(Context context, AttributeSet attrs) {
+		// TODO Auto-generated method stub
+		super(context, attrs);
+	}
+
+	public GraphView(Context context, AttributeSet attrs, int defStyle) {
+		// TODO Auto-generated method stub
+		super(context, attrs, defStyle);
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		createBMPs();
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -13,24 +37,8 @@ public class GraphView extends View {
 		super.onDraw(canvas);
 	}
 
-	public GraphView(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
-
-	public GraphView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		// TODO Auto-generated constructor stub
-	}
-
-	public GraphView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		int measuredHeight = measureHeight(heightMeasureSpec);
 		int measuredWidth = measureWidth(widthMeasureSpec);
@@ -46,5 +54,11 @@ public class GraphView extends View {
 	private int measureHeight(int heightMeasureSpec) {
        int specSize = MeasureSpec.getSize(heightMeasureSpec);
        return specSize;
+	}
+	
+	private void createBMPs() {
+		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
+								Bitmap.Config.ARGB_8888);
+		fg = Bitmap.createBitmap(bg);
 	}
 }
