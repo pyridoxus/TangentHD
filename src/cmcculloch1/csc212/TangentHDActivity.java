@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class TangentHDActivity extends Activity {
@@ -18,7 +17,7 @@ public class TangentHDActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageView graph = (ImageView) findViewById(R.id.exampleScreen);
+        GraphView graph = (GraphView) findViewById(R.id.graphView);
         registerForContextMenu(graph);
     }
     

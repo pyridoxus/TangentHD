@@ -5,13 +5,11 @@
     android:orientation="vertical"
     android:weightSum="100" >
 
-    <ImageView
-        android:id="@+id/exampleScreen"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_weight="66"
-        android:contentDescription="@string/main_graph"
-        android:src="@drawable/example_screen" />
+	<GraphView
+       android:id="@+id/graphView"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="60" />
 
     <TextView
         android:id="@+id/textView3"
