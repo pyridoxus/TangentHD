@@ -10,7 +10,9 @@ import android.view.View;
 public class GraphView extends View {
 	Bitmap bg;	// Background bitmap to hold the more static image of graph
 	Bitmap fg;	// Foreground bitmap to hold the more dynamic image of secants
-
+	float x, y;	// Graph coordinates
+	GraphPoint gp;	// Object to convert from graph coordinate system to bmp 
+	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
@@ -61,6 +63,9 @@ public class GraphView extends View {
 	private void createBMPs() {
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
+		gp.setH(getHeight());
+		gp.setW(getWidth());
+		gp.setResolution(32);
 		Canvas c = new Canvas(bg);
 		c.drawColor(getResources().getColor(R.color.white));
 		drawGrid();
@@ -70,14 +75,18 @@ public class GraphView extends View {
 	private void drawGrid() {
 		Paint p = new Paint();
 		Canvas c = new Canvas(bg);
-		int h = getHeight();
-		int w = getWidth();
 		p.setColor(getResources().getColor(R.color.black));
-		for(int x = 0; x < w; x += 8) {
-			c.drawLine(x, 0, x, h, p);
+		gp.y = 0;
+		for(x = -3; x < 4; x++) {
+			gp.x = x;
+			gp.convert(x, 0);
+			c.drawLine(gp.x, 0, gp.x, gp.getH(), p);
 		}
-		for(int y = 0; y < h; y += 8) {
-			c.drawLine(0, y, w, y, p);
+		for(y = -3; y < 4; y++) {
+			gp.y = y;
+			gp.convert(0, y);
+			c.drawLine(0, gp.y, gp.getW(), gp.y, p);
 		}
 	}
+	
 }
