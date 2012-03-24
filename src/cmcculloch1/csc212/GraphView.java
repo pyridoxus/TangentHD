@@ -46,9 +46,14 @@ public class GraphView extends View {
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		createBMPs();
-		float xmin = -gp.getW() / 2 / gp.getResolution();
-		float xmax = -xmin;
-		eqMan = new EquationManager(xmin, xmax, gp.getResolution());
+		double xmin = -gp.getW() / 2 / gp.getResolution();
+		double xmax = -xmin;
+		int steps = getResources().getInteger(R.integer.graphStep);
+		double step = 1.0 / (double)steps;
+		System.out.println("xmin: " + Double.toString(xmin) +
+				" xmax: " + Double.toString(xmax) + 
+				" step: " + Double.toString(step));
+		eqMan = new EquationManager(xmin, xmax, step);
 	}
 
 	@Override

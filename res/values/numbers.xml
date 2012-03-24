@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item format="integer" type="integer" name="resolution">32</item>
+    <item name="graphStep" format="integer" type="integer">10</item>
     
 </resources>
