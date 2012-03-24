@@ -30,6 +30,17 @@ public class GraphView extends View {
 		gp = new GraphPoint();
 	}
 
+	public void selectEquation(int i) {
+		switch (i) {
+			case R.id.equation1:
+			break;
+			case R.id.equation2:
+			break;
+			case R.id.equation3:
+			break;
+		}
+	}
+	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
