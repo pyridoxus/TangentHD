@@ -1,14 +1,14 @@
 package cmcculloch1.csc212;
 
 public class GraphPoint {
-	float x, y;
+	double x, y;
 	private int resolution, h, w;
 	public GraphPoint(){
 		x = 0;
 		y = 0;
 	}
 	
-	public GraphPoint(int a, int b) {
+	public GraphPoint(double a, double b) {
 		x = a;
 		y = b;
 	}
@@ -19,7 +19,7 @@ public class GraphPoint {
 	// there are between each integer in the graph coordinate system.
 	// x and y are altered inside this function, so all graph coordinate system
 	// uses must be completed before calling this function.
-	public GraphPoint convert(float a, float b) {
+	public GraphPoint convert() {
 		x = x * resolution + w / 2;
 		y = y * resolution + h / 2;
 		return this;

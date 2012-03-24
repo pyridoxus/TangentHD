@@ -10,7 +10,9 @@ public class Equation {
 	// while counting from xmin to xmax.
 	public Equation(int id, double xmin, double xmax, double resolution) {
 		double x, y;
+		data = new ArrayList<Point2D>();
 		y = 0;
+		System.out.println("id: " + Integer.toString(id));
 		for(x = xmin; x < xmax; x += resolution) {
 			switch (id) {
 				case R.id.equation1:
@@ -27,6 +29,9 @@ public class Equation {
 					y = Math.abs(x * x - 1);
 				break;
 			}
+			System.out.println("(" + Double.toString(x) + ", " + 
+							Double.toString(y) + ")");
+			
 			data.add(new Point2D(x, y));
 		}
 	}

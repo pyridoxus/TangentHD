@@ -10,24 +10,25 @@ import android.view.View;
 public class GraphView extends View {
 	Bitmap bg;	// Background bitmap to hold the more static image of graph
 	Bitmap fg;	// Foreground bitmap to hold the more dynamic image of secants
-	GraphPoint gp;	// Object to convert from graph coordinate system to bmp 
+	GraphPoint gp;	// Object to convert from graph coordinate system to bmp
+	EquationManager eqMan;	// Manage the data representing the graphs
 	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
-		gp = new GraphPoint();
+		init();
 	}
 
 	public GraphView(Context context, AttributeSet attrs) {
 		// TODO Auto-generated method stub
 		super(context, attrs);
-		gp = new GraphPoint();
+		init();
 	}
 
 	public GraphView(Context context, AttributeSet attrs, int defStyle) {
 		// TODO Auto-generated method stub
 		super(context, attrs, defStyle);
-		gp = new GraphPoint();
+		init();
 	}
 
 	public void selectEquation(int i) {
@@ -45,6 +46,9 @@ public class GraphView extends View {
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		createBMPs();
+		float xmin = -gp.getW() / 2 / gp.getResolution();
+		float xmax = -xmin;
+		eqMan = new EquationManager(xmin, xmax, gp.getResolution());
 	}
 
 	@Override
@@ -60,6 +64,11 @@ public class GraphView extends View {
 		int measuredHeight = measureHeight(heightMeasureSpec);
 		int measuredWidth = measureWidth(widthMeasureSpec);
 		setMeasuredDimension(measuredWidth, measuredHeight);
+	}
+	
+	private void init() {
+		gp = new GraphPoint();
+		gp.setResolution(getResources().getInteger(R.integer.resolution));
 	}
 	
 	private int measureWidth(int widthMeasureSpec) {
@@ -78,7 +87,6 @@ public class GraphView extends View {
 								Bitmap.Config.ARGB_8888);
 		gp.setH(getHeight());
 		gp.setW(getWidth());
-		gp.setResolution(32);
 		Canvas c = new Canvas(bg);
 		c.drawColor(getResources().getColor(R.color.white));
 		drawGrid();
@@ -86,23 +94,25 @@ public class GraphView extends View {
 	}
 	
 	private void drawGrid() {
-		float x, y;	// Graph coordinates
+		double x, y;	// Graph coordinates
 		Paint p = new Paint();
 		Canvas c = new Canvas(bg);
 		p.setColor(getResources().getColor(R.color.black));
 		p.setStyle(Paint.Style.STROKE);
-		float xres = gp.getW() / gp.getResolution();
-		float yres = gp.getH() / gp.getResolution();
+		double xres = gp.getW() / gp.getResolution();
+		double yres = gp.getH() / gp.getResolution();
 		p.setStrokeWidth(2);
+		gp.y = 0;
 		for(x = -xres; x < xres; x++) {
 			gp.x = x;
-			gp.convert(x, 0);
-			c.drawLine(gp.x, 0, gp.x, gp.getH(), p);
+			gp.convert();
+			c.drawLine((float)gp.x, 0, (float)gp.x, gp.getH(), p);
 		}
+		gp.x = 0;
 		for(y = -yres; y < yres; y++) {
 			gp.y = y;
-			gp.convert(0, y);
-			c.drawLine(0, gp.y, gp.getW(), gp.y, p);
+			gp.convert();
+			c.drawLine(0, (float)gp.y, gp.getW(), (float)gp.y, p);
 		}
 		p.setStrokeWidth(4);
 		// Draw x axis
