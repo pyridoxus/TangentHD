@@ -97,7 +97,7 @@ public class TangentHDActivity extends Activity {
             default:
                 return super.onContextItemSelected(item);
         }
-        if(!killed) {
+        if(killed == false) {
 	        // Handle item selection
 	        graph.selectEquation(m_id);
 	        toast.show();

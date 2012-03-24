@@ -31,21 +31,17 @@ public class GraphView extends View {
 		init();
 	}
 
+	// This function is called when the user selects to use a different equation
 	public void selectEquation(int i) {
-		switch (i) {
-			case R.id.equation1:
-			break;
-			case R.id.equation2:
-			break;
-			case R.id.equation3:
-			break;
-		}
+		eqMan.setId(i);
+		createBMPs();
 	}
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		createBMPs();
+		gp.setH(getHeight());
+		gp.setW(getWidth());
 		double xmin = -gp.getW() / 2 / gp.getResolution();
 		double xmax = -xmin;
 		int steps = getResources().getInteger(R.integer.graphStep);
@@ -53,7 +49,8 @@ public class GraphView extends View {
 		System.out.println("xmin: " + Double.toString(xmin) +
 				" xmax: " + Double.toString(xmax) + 
 				" step: " + Double.toString(step));
-		eqMan = new EquationManager(xmin, xmax, step);
+		eqMan.init(xmin, xmax, step);
+		createBMPs();
 	}
 
 	@Override
@@ -74,6 +71,8 @@ public class GraphView extends View {
 	private void init() {
 		gp = new GraphPoint();
 		gp.setResolution(getResources().getInteger(R.integer.resolution));
+		eqMan = new EquationManager();
+		selectEquation(R.id.equation1);
 	}
 	
 	private int measureWidth(int widthMeasureSpec) {
@@ -90,14 +89,17 @@ public class GraphView extends View {
 	private void createBMPs() {
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
-		gp.setH(getHeight());
-		gp.setW(getWidth());
 		Canvas c = new Canvas(bg);
 		c.drawColor(getResources().getColor(R.color.white));
 		drawGrid();
+		drawEquation();
 		fg = Bitmap.createBitmap(bg);
 	}
 	
+	private void drawEquation() {
+		eqMan.draw(bg);
+	}
+
 	private void drawGrid() {
 		double x, y;	// Graph coordinates
 		Paint p = new Paint();
@@ -125,6 +127,6 @@ public class GraphView extends View {
 
 		// Draw y axis
 		c.drawLine(gp.getW() / 2, 0, gp.getW() / 2, gp.getH(), p);
-}
+	}
 	
 }
