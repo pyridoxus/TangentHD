@@ -10,22 +10,24 @@ import android.view.View;
 public class GraphView extends View {
 	Bitmap bg;	// Background bitmap to hold the more static image of graph
 	Bitmap fg;	// Foreground bitmap to hold the more dynamic image of secants
-	float x, y;	// Graph coordinates
 	GraphPoint gp;	// Object to convert from graph coordinate system to bmp 
 	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
+		gp = new GraphPoint();
 	}
 
 	public GraphView(Context context, AttributeSet attrs) {
 		// TODO Auto-generated method stub
 		super(context, attrs);
+		gp = new GraphPoint();
 	}
 
 	public GraphView(Context context, AttributeSet attrs, int defStyle) {
 		// TODO Auto-generated method stub
 		super(context, attrs, defStyle);
+		gp = new GraphPoint();
 	}
 
 	@Override
@@ -73,20 +75,30 @@ public class GraphView extends View {
 	}
 	
 	private void drawGrid() {
+		float x, y;	// Graph coordinates
 		Paint p = new Paint();
 		Canvas c = new Canvas(bg);
 		p.setColor(getResources().getColor(R.color.black));
-		gp.y = 0;
-		for(x = -3; x < 4; x++) {
+		p.setStyle(Paint.Style.STROKE);
+		float xres = gp.getW() / gp.getResolution();
+		float yres = gp.getH() / gp.getResolution();
+		p.setStrokeWidth(2);
+		for(x = -xres; x < xres; x++) {
 			gp.x = x;
 			gp.convert(x, 0);
 			c.drawLine(gp.x, 0, gp.x, gp.getH(), p);
 		}
-		for(y = -3; y < 4; y++) {
+		for(y = -yres; y < yres; y++) {
 			gp.y = y;
 			gp.convert(0, y);
 			c.drawLine(0, gp.y, gp.getW(), gp.y, p);
 		}
-	}
+		p.setStrokeWidth(4);
+		// Draw x axis
+		c.drawLine(0, gp.getH() / 2, gp.getW(), gp.getH() / 2, p);
+
+		// Draw y axis
+		c.drawLine(gp.getW() / 2, 0, gp.getW() / 2, gp.getH(), p);
+}
 	
 }
