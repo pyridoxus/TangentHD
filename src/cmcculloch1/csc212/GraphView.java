@@ -50,6 +50,8 @@ public class GraphView extends View {
 				" xmax: " + Double.toString(xmax) + 
 				" step: " + Double.toString(step));
 		eqMan.init(xmin, xmax, step, gp.getResolution());
+		eqMan.setH(h);
+		eqMan.setW(w);
 		createBMPs();
 	}
 
@@ -73,7 +75,7 @@ public class GraphView extends View {
 		gp.setResolution(getResources().getInteger(R.integer.resolution));
 		eqMan = new EquationManager();
 		eqMan.setId(R.id.equation1); // Default
-		eqMan.setColor(getResources().getColor(R.color.black));
+		eqMan.setColor(getResources().getColor(R.color.blue));
 	}
 	
 	private int measureWidth(int widthMeasureSpec) {

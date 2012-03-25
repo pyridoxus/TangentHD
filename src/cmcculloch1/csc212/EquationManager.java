@@ -7,12 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class EquationManager {
+public class EquationManager extends GraphPoint{
 	private ArrayList<Equation> e;
 	private int id;	// ID of the currently used equation
 	private int color;	// Color of graph
 //	private double xmin, xmax, step;
-	private int resolution;
 	public EquationManager(double xmin, double xmax, double step,
 							int resolution) {
 		e = new ArrayList<Equation>();
@@ -38,7 +37,7 @@ public class EquationManager {
 //		this.xmin = xmin;
 //		this.xmax = xmax;
 //		this.step = step;
-		this.resolution = resolution;
+		this.setResolution(resolution);	// GraphPoint requires size
 		System.out.println("Initialize with xmin=" + xmin + 
 						" xmax=" + xmax + " step=" + step);
 		Equation a = new Equation(R.id.equation1, xmin, xmax, step);
@@ -54,12 +53,10 @@ public class EquationManager {
 		ArrayList<Point2D> data = new ArrayList<Point2D>();
 		Paint p = new Paint();
 		Canvas c = new Canvas(b);
-		GraphPoint gp = new GraphPoint();
 		int x, y;
 		p.setColor(this.color);
 		p.setStyle(Paint.Style.STROKE);
-		p.setStrokeWidth(10);
-		gp.setResolution(this.resolution);	// GraphPoint requires size
+		p.setStrokeWidth(3);
 
 		switch(this.id){
 			case R.id.equation1:
@@ -82,15 +79,19 @@ public class EquationManager {
 		pnt.setY(data.get(0).getY());
 		for(Iterator<Point2D> i = data.iterator(); i.hasNext();) {
 			Point2D nxt = i.next();
-			gp.x = pnt.getX();
-			gp.y = pnt.getY();
-			gp.convert();
-			x = (int)gp.x;
-			y = (int)gp.y;
-			gp.x = nxt.getX();
-			gp.y = nxt.getY();
-			gp.convert();
-			c.drawLine(x, y, (float)gp.x, (float)gp.y, p);
+			System.out.println("nxt (" + Double.toString(nxt.getX()) + ", " + 
+					Double.toString(nxt.getY()) + ")");
+			this.x = pnt.getX();
+			this.y = pnt.getY();
+			System.out.println("pnt (" + Double.toString(this.x) + ", " + 
+					Double.toString(this.y) + ")");
+			this.convert();
+			x = (int)this.x;
+			y = (int)this.y;
+			this.x = nxt.getX();
+			this.y = nxt.getY();
+			this.convert();
+			c.drawLine(x, y, (float)this.x, (float)this.y, p);
 			System.out.println("(" + Double.toString(x) + ", " + 
 								Double.toString(y) + ")");
 			pnt = nxt;
