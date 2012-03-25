@@ -11,15 +11,18 @@ public class EquationManager extends GraphPoint{
 	private ArrayList<Equation> e;
 	private int id;	// ID of the currently used equation
 	private int color;	// Color of graph
+	private ArrayList<Point2D> data;	// Array of currently used data
 //	private double xmin, xmax, step;
 	public EquationManager(double xmin, double xmax, double step,
 							int resolution) {
+		super();
 		e = new ArrayList<Equation>();
 		init(xmin, xmax, step, resolution);
 		setId(0);	// Must be set when selecting equation
 	}
 
 	public EquationManager() {
+		super();
 		e = new ArrayList<Equation>();
 		setId(0);	// Must be set when selecting equation
 	}
@@ -28,8 +31,29 @@ public class EquationManager extends GraphPoint{
 		return id;
 	}
 
+	@SuppressWarnings("unchecked")
+	private void setData() {
+		switch(id) {
+			case R.id.equation1:
+				data = (ArrayList<Point2D>)e.get(0).getPoints();
+				System.out.println("Using equation 1");
+			break;
+			case R.id.equation2:
+				data = (ArrayList<Point2D>)e.get(1).getPoints();
+				System.out.println("Using equation 2");
+			break;
+			case R.id.equation3:
+				data = (ArrayList<Point2D>)e.get(2).getPoints();
+				System.out.println("Using equation 3");
+			break;
+			default:
+				data = null;
+		}
+	}
+	
 	public void setId(int id) {
 		this.id = id;
+		if(e.size() > 0) this.setData(); // Set data based on the current ID
 	}
 	
 	public void init(double xmin,  double xmax, double step, int resolution) {
@@ -46,11 +70,10 @@ public class EquationManager extends GraphPoint{
 		e.add(a);
 		a = new Equation(R.id.equation3, xmin, xmax, step);
 		e.add(a);
+		this.setData();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void draw(Bitmap b) {
-		ArrayList<Point2D> data = new ArrayList<Point2D>();
 		Paint p = new Paint();
 		Canvas c = new Canvas(b);
 		int x, y;
@@ -58,20 +81,6 @@ public class EquationManager extends GraphPoint{
 		p.setStyle(Paint.Style.STROKE);
 		p.setStrokeWidth(3);
 
-		switch(this.id){
-			case R.id.equation1:
-				data = (ArrayList<Point2D>)e.get(0).getPoints();
-				System.out.println("Using equation 1");
-			break;
-			case R.id.equation2:
-				data = (ArrayList<Point2D>)e.get(1).getPoints();
-				System.out.println("Using equation 2");
-			break;
-			case R.id.equation3:
-				data = (ArrayList<Point2D>)e.get(2).getPoints();
-				System.out.println("Using equation 3");
-			break;
-		}
 //		System.out.println("Length = " + data.size());
 		Point2D pnt = new Point2D();
 		// Setup the initial point to be the same as the first point in list
