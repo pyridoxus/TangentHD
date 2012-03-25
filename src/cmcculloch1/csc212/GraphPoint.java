@@ -20,8 +20,8 @@ public class GraphPoint {
 	// x and y are altered inside this function, so all graph coordinate system
 	// uses must be completed before calling this function.
 	public GraphPoint convert() {
-		x = x * resolution + w / 2;
-		y = y * resolution + h / 2;
+		x = w / 2 + x * resolution;
+		y = h / 2 - y * resolution;
 		return this;
 	}
 

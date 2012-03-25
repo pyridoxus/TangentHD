@@ -1,6 +1,7 @@
 package cmcculloch1.csc212;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Equation {
 	private ArrayList<Point2D> data;
@@ -29,10 +30,14 @@ public class Equation {
 					y = Math.abs(x * x - 1);
 				break;
 			}
-			System.out.println("(" + Double.toString(x) + ", " + 
-							Double.toString(y) + ")");
-			
 			data.add(new Point2D(x, y));
+		}
+		System.out.println("Point2D at " + data + " (" + Double.toString(x) + ", " + 
+				Double.toString(y) + ")");
+		for(Iterator<Point2D> i = data.iterator(); i.hasNext();) {
+			Point2D n = i.next();
+			System.out.println("(" + Double.toString(n.getX()) + ", " +
+					Double.toString(n.getY()) + ")");
 		}
 	}
 
