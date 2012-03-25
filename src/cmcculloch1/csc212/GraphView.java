@@ -34,7 +34,9 @@ public class GraphView extends View {
 	// This function is called when the user selects to use a different equation
 	public void selectEquation(int i) {
 		eqMan.setId(i);
+		System.out.println("Changing equation: " + Integer.toString(i));
 		createBMPs();
+		this.invalidate();	// Force a redraw (using onDraw)
 	}
 	
 	@Override

@@ -72,19 +72,19 @@ public class EquationManager extends GraphPoint{
 				System.out.println("Using equation 3");
 			break;
 		}
-		System.out.println("Length = " + data.size());
+//		System.out.println("Length = " + data.size());
 		Point2D pnt = new Point2D();
 		// Setup the initial point to be the same as the first point in list
 		pnt.setX(data.get(0).getX());
 		pnt.setY(data.get(0).getY());
 		for(Iterator<Point2D> i = data.iterator(); i.hasNext();) {
 			Point2D nxt = i.next();
-			System.out.println("nxt (" + Double.toString(nxt.getX()) + ", " + 
-					Double.toString(nxt.getY()) + ")");
+//			System.out.println("nxt (" + Double.toString(nxt.getX()) + ", " + 
+//					Double.toString(nxt.getY()) + ")");
 			this.x = pnt.getX();
 			this.y = pnt.getY();
-			System.out.println("pnt (" + Double.toString(this.x) + ", " + 
-					Double.toString(this.y) + ")");
+//			System.out.println("pnt (" + Double.toString(this.x) + ", " + 
+//					Double.toString(this.y) + ")");
 			this.convert();
 			x = (int)this.x;
 			y = (int)this.y;
@@ -92,8 +92,8 @@ public class EquationManager extends GraphPoint{
 			this.y = nxt.getY();
 			this.convert();
 			c.drawLine(x, y, (float)this.x, (float)this.y, p);
-			System.out.println("(" + Double.toString(x) + ", " + 
-								Double.toString(y) + ")");
+//			System.out.println("(" + Double.toString(x) + ", " + 
+//								Double.toString(y) + ")");
 			pnt = nxt;
 		}
 	}
