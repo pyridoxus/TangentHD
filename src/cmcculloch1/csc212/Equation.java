@@ -10,11 +10,13 @@ public class Equation {
 	// by xmin and xmax. The resolution is the interval between used values
 	// while counting from xmin to xmax.
 	public Equation(int id, double xmin, double xmax, double resolution) {
-		double x, y;
+		double xa, x, y;
 		data = new ArrayList<Point2D>();
+		x = 0;
 		y = 0;
 		System.out.println("id: " + Integer.toString(id));
-		for(x = xmin; x < xmax; x += resolution) {
+		for(xa = xmin; xa < xmax; xa += resolution) {
+			x = xa;
 			switch (id) {
 				case R.id.equation1:
 					y = Math.pow(x, 3);
@@ -23,8 +25,18 @@ public class Equation {
 //					x ^ (2/3) + y ^ (2/3) = 1
 //					y ^ (2/3) = 1 - x ^ (2/3)
 //					y = (1 - x ^ (2/3))  ^ (3/2)
-					
-					y = Math.pow(1 - Math.pow(x, 2 / 3), 3 / 2);
+					if(x > 1) {
+						x = 1;
+						y = 0;
+					}
+					else if(x >= 0)
+						y = Math.pow(1.0 - Math.pow(x, 2.0 / 3.0), 3.0 / 2.0);
+					else if(x >= -1)
+						y = Math.pow(1.0 - Math.pow(-x, 2.0 / 3.0), 3.0 / 2.0);
+					else if(x < -1) {
+						x = -1;
+						y = 0;
+					}
 				break;
 				case R.id.equation3:
 					y = Math.abs(x * x - 1);
