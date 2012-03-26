@@ -98,7 +98,8 @@ public class GraphView extends View {
 		c.drawColor(getResources().getColor(R.color.white));
 		drawGrid();
 		drawEquation();
-		fg = Bitmap.createBitmap(bg);
+		// Lines, dots, and text get drawn onto this bitmap..
+		fg = bg.copy(bg.getConfig(), true);
 	}
 	
 	private void drawEquation() {

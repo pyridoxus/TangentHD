@@ -114,4 +114,9 @@ public class EquationManager extends GraphPoint{
 	public void setColor(int color) {
 		this.color = color;
 	}
+	
+	public Point2D getPoint(int i) {
+		// Return point for a given index in the set of data for the equation
+		return data.get(i);
+	}
 }
