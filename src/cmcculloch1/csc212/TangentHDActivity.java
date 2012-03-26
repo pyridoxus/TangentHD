@@ -9,10 +9,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class TangentHDActivity extends Activity {
 	GraphView graph;
+	SeekBar seekBar[] = new SeekBar[2];
 	boolean killed = false;
     /** Called when the activity is first created. */
     @Override
@@ -21,6 +23,8 @@ public class TangentHDActivity extends Activity {
         setContentView(R.layout.main);
         graph = (GraphView) findViewById(R.id.graphView);
         registerForContextMenu(graph);
+        setupSeekBar(0);
+        setupSeekBar(1);
     }
     
     @Override
@@ -103,5 +107,31 @@ public class TangentHDActivity extends Activity {
 	        toast.show();
         }
         return true;
+    }
+
+    private void setupSeekBar(int i) {
+    	if(i == 0) seekBar[i] = (SeekBar)findViewById(R.id.seekBar1);
+    	else seekBar[i] = (SeekBar)findViewById(R.id.seekBar2);
+        seekBar[i].setOnSeekBarChangeListener(
+        				new SeekBar.OnSeekBarChangeListener() {
+        	@Override
+        	public void onProgressChanged(SeekBar seekBar, int progress,
+        			boolean fromUser) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+
+        	@Override
+        	public void onStartTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+
+        	@Override
+        	public void onStopTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+        });
     }
 }
