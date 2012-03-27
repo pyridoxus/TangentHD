@@ -110,15 +110,16 @@ public class TangentHDActivity extends Activity {
     }
 
     private void setupSeekBar(int i) {
-    	if(i == 0) seekBar[i] = (SeekBar)findViewById(R.id.seekBar1);
-    	else seekBar[i] = (SeekBar)findViewById(R.id.seekBar2);
+    	final int ID;
+    	if(i == 0) ID = R.id.seekBar1;
+    	else ID = R.id.seekBar2;
+    	seekBar[i] = (SeekBar)findViewById(ID);
         seekBar[i].setOnSeekBarChangeListener(
         				new SeekBar.OnSeekBarChangeListener() {
         	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
-        		// TODO Auto-generated method stub
-        		
+        		TangentHDActivity.setSeekBar(ID, progress);        		
         	}
 
         	@Override
@@ -133,5 +134,10 @@ public class TangentHDActivity extends Activity {
         		
         	}
         });
+    }
+    
+    private static void setSeekBar(int ID, int progress) {
+    	System.out.println("Seekbar: " + Integer.toString(ID) +
+    						" progress: " + progress);
     }
 }
