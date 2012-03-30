@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="GraphAttributes">
+		<attr name="sizeRatio" format="integer" />
+		<attr name="offsetX" format="integer" />
+		<attr name="offsetY" format="integer" />
+		<attr name="startX" format="float" />
+		<attr name="endX" format="float" />
+	</declare-styleable>
+</resources>

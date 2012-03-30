@@ -57,4 +57,19 @@
         android:progress="100"
         android:progressDrawable="@color/red" />
 
+    <View
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212"
+		android:id="@+id/graphAttributes"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		TangentHD:sizeRatio="32"
+		TangentHD:offsetX="0"
+		TangentHD:offsetY="0"
+		TangentHD:startX="0"
+		TangentHD:endX="0"
+	/>
+    
 </LinearLayout>
+
