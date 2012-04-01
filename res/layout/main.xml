@@ -4,14 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:weightSum="100"
-	 >
-    
+    android:weightSum="100" >
+
 	<cmcculloch1.csc212.GraphView
-		android:id="@+id/graphView"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="60" />
+       android:id="@+id/graphView"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="60" />
 
     <TextView
         android:id="@+id/textView3"
@@ -61,14 +60,14 @@
 
 	<cmcculloch1.csc212.GraphAttributes
 		android:id="@+id/graphAttributes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_weight="0"
 		TangentHD:sizeRatio="32"
 		TangentHD:offsetX="0"
 		TangentHD:offsetY="0"
 		TangentHD:startX="0"
 		TangentHD:endX="0"
 	/>
-    
+
 </LinearLayout>
