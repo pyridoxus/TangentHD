@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<declare-styleable name="GraphAttributes">
-		<attr name="sizeRatio" format="integer" />
-		<attr name="offsetX" format="integer" />
-		<attr name="offsetY" format="integer" />
-		<attr name="startX" format="float" />
-		<attr name="endX" format="float" />
-	</declare-styleable>
+		<attr name="sizeRatio1" format="integer" />
+		<attr name="offsetX1" format="integer" />
+		<attr name="offsetY1" format="integer" />
+		<attr name="startX1" format="float" />
+		<attr name="endX1" format="float" />
+		<attr name="name1" format="string" />
+		<attr name="sizeRatio2" format="integer" />
+		<attr name="offsetX2" format="integer" />
+		<attr name="offsetY2" format="integer" />
+		<attr name="startX2" format="float" />
+		<attr name="endX2" format="float" />
+		<attr name="name2" format="string" />
+		<attr name="sizeRatio3" format="integer" />
+		<attr name="offsetX3" format="integer" />
+		<attr name="offsetY3" format="integer" />
+		<attr name="startX3" format="float" />
+		<attr name="endX3" format="float" />
+		<attr name="name3" format="string" />
+			</declare-styleable>
 </resources>

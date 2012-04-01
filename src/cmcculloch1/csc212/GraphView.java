@@ -9,23 +9,23 @@ import android.view.View;
 public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
 	Bitmap fg = null;	// Foreground bitmap holds more dynamic image of secants
-	private GraphAttributes ga;
 
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
+		init();
 	}
 
 	public GraphView(Context context, AttributeSet attrs) {
 		// TODO Auto-generated method stub
 		super(context, attrs);
-		init(context, attrs);
+		init();
 	}
 
 	public GraphView(Context context, AttributeSet attrs, int defStyle) {
 		// TODO Auto-generated method stub
 		super(context, attrs, defStyle);
-		init(context, attrs);
+		init();
 	}
 
 	@Override
@@ -60,15 +60,12 @@ public class GraphView extends View {
 	}
 	
 	private void createBMPs() {
-		System.out.println("H: " + Integer.toString(getMeasuredHeight()));
-		System.out.println("W: " + Integer.toString(getMeasuredWidth()));
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
 		fg = Bitmap.createBitmap(bg);
 	}
 	
-	private void init(Context context, AttributeSet attrs) {
-		ga = new GraphAttributes(context, attrs);
+	private void init() {
 	}
 	
 }
