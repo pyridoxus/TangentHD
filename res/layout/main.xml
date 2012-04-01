@@ -59,7 +59,7 @@
 
     <View
 		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212"
+		xmlns:TangentHD="cmcculloch1.csc212"
 		android:id="@+id/graphAttributes"
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
