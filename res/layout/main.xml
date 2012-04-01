@@ -3,13 +3,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:weightSum="100" >
-
+    android:weightSum="100"
+	xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212" >
+    
 	<cmcculloch1.csc212.GraphView
-       android:id="@+id/graphView"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="60" />
+	    android:id="@+id/graphView"
+	    android:layout_width="wrap_content"
+	    android:layout_height="0dp"
+	    android:layout_weight="60" />
 
     <TextView
         android:id="@+id/textView3"
@@ -57,13 +58,11 @@
         android:progress="100"
         android:progressDrawable="@color/red" />
 
-    <View
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:TangentHD="cmcculloch1.csc212"
+	<cmcculloch1.csc212.GraphAttributes
 		android:id="@+id/graphAttributes"
-		android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
 		TangentHD:sizeRatio="32"
 		TangentHD:offsetX="0"
 		TangentHD:offsetY="0"
@@ -72,4 +71,3 @@
 	/>
     
 </LinearLayout>
-

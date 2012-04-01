@@ -31,14 +31,13 @@ public class GraphView extends View {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		//createBMPs();
+		createBMPs();
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
-		if(bg == null && fg == null) createBMPs();
 	}
 
 	@Override
@@ -71,4 +70,5 @@ public class GraphView extends View {
 	private void init(Context context, AttributeSet attrs) {
 		ga = new GraphAttributes(context, attrs);
 	}
+	
 }
