@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:weightSum="100"
-	xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212" >
+	 >
     
 	<cmcculloch1.csc212.GraphView
-	    android:id="@+id/graphView"
-	    android:layout_width="wrap_content"
-	    android:layout_height="0dp"
-	    android:layout_weight="60" />
+		android:id="@+id/graphView"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="60" />
 
     <TextView
         android:id="@+id/textView3"
