@@ -57,6 +57,8 @@ public class GraphView extends View {
 	}
 	
 	private void createBMPs() {
+		System.out.println("H: " + Integer.toString(getMeasuredHeight()));
+		System.out.println("W: " + Integer.toString(getMeasuredWidth()));
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
 		fg = Bitmap.createBitmap(bg);
