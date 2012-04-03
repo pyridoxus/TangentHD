@@ -9,15 +9,12 @@ public class GraphInterpolate {
 	private double bmpY;			// Y dimension of bitmap.
 	private Point2D q;			// Hold onto the interpolated point.
 	
-	public GraphInterpolate(int sizeRatio, int offsetX, int offsetY,
+	public GraphInterpolate(double sizeRatio, double offsetX, double offsetY,
 							int bmpX, int bmpY) {
 		
-		// TODO: Make all sizeRatio, offsets, etc into doubles in XML file.
-		// This will make computations use the same data type and reduce
-		// type casting problems!
-		this.offsetX = (double)offsetX;
-		this.offsetY = (double)offsetY;
-		this.sizeRatio = (double)sizeRatio;
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+		this.sizeRatio = sizeRatio;
 		if(this.sizeRatio < 1) this.sizeRatio = 1;
 		this.bmpX = (double)bmpX;
 		this.bmpY = (double)bmpY;
@@ -28,7 +25,7 @@ public class GraphInterpolate {
 		return sizeRatio;
 	}
 	
-	public void setSizeRatio(int sizeRatio) {
+	public void setSizeRatio(double sizeRatio) {
 		this.sizeRatio = sizeRatio;
 	}
 	
@@ -36,7 +33,7 @@ public class GraphInterpolate {
 		return offsetX;
 	}
 	
-	public void setOffsetX(int offsetX) {
+	public void setOffsetX(double offsetX) {
 		this.offsetX = offsetX;
 	}
 	
@@ -44,7 +41,7 @@ public class GraphInterpolate {
 		return offsetY;
 	}
 
-	public void setOffsetY(int offsetY) {
+	public void setOffsetY(double offsetY) {
 		this.offsetY = offsetY;
 	}
 	
@@ -58,8 +55,8 @@ public class GraphInterpolate {
 	public Point2D bmpToGraph(Point2D p) {
 		// This function is not done yet!
 		// If x, y offsets are 0, 0, then origin of graph is center of bitmap.
-		q.setX((this.bmpX / 2.0) + (p.getX() - this.offsetX) * this.sizeRatio);
-		q.setY((this.bmpY / 2.0) - (p.getY() - this.offsetY) * this.sizeRatio);
+		q.setX((p.getX() - (this.bmpX / 2.0)) / this.sizeRatio + this.offsetX);
+		q.setY((p.getY() - (this.bmpY / 2.0)) / this.sizeRatio + this.offsetY);
 		return this.q;
 	}
 }

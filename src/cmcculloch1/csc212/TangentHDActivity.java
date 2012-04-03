@@ -18,6 +18,7 @@ public class TangentHDActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         GraphView graph = (GraphView) findViewById(R.id.graphView);
+        graph.setAttributes((GraphAttributes)findViewById(R.id.graphAttributes));
         registerForContextMenu(graph);
     }
     

@@ -7,9 +7,9 @@ import android.view.View;
 
 public class GraphAttributes extends View {
 
-	private int[] sizeRatio = new int[3];
-	private int[] offsetX = new int[3];
-	private int[] offsetY = new int[3];
+	private float[] sizeRatio = new float[3];
+	private float[] offsetX = new float[3];
+	private float[] offsetY = new float[3];
 	private float[] startX = new float[3];
 	private float[] endX = new float[3];
 	private String[] name = new String[3];
@@ -31,6 +31,30 @@ public class GraphAttributes extends View {
 		init_res(context, attrs);
 	}
 
+	public float getSizeRatio(int idx) {
+		return this.sizeRatio[idx];
+	}
+	
+	public float getOffsetX(int idx) {
+		return this.offsetX[idx];
+	}
+	
+	public float getOffsetY(int idx) {
+		return this.offsetY[idx];
+	}
+	
+	public float getStartX(int idx) {
+		return this.startX[idx];
+	}
+	
+	public float getEndX(int idx) {
+		return this.endX[idx];
+	}
+	
+	public String getName(int idx) {
+		return this.name[idx];
+	}
+	
 	private void init_res(Context context, AttributeSet attrs) {
 		String s;
 		TypedArray a = context.obtainStyledAttributes(attrs,
@@ -38,18 +62,18 @@ public class GraphAttributes extends View {
 
 		s = a.getString(R.styleable.GraphAttributes_sizeRatio1);
         if (s != null) {
-            sizeRatio[0] = Integer.parseInt(s);
-            System.out.println(Integer.toString(sizeRatio[0]));
+            sizeRatio[0] = Float.parseFloat(s);
+            System.out.println(Float.toString(sizeRatio[0]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetX1);
         if (s != null) {
-        	offsetX[0] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetX[0]));
+        	offsetX[0] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetX[0]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetY1);
         if (s != null) {
-        	offsetY[0] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetY[0]));
+        	offsetY[0] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetY[0]));
         }
         s = a.getString(R.styleable.GraphAttributes_startX1);
         if (s != null) {
@@ -69,18 +93,18 @@ public class GraphAttributes extends View {
         
 		s = a.getString(R.styleable.GraphAttributes_sizeRatio2);
         if (s != null) {
-            sizeRatio[1] = Integer.parseInt(s);
-            System.out.println(Integer.toString(sizeRatio[1]));
+            sizeRatio[1] = Float.parseFloat(s);
+            System.out.println(Float.toString(sizeRatio[1]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetX2);
         if (s != null) {
-        	offsetX[1] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetX[1]));
+        	offsetX[1] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetX[1]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetY2);
         if (s != null) {
-        	offsetY[1] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetY[1]));
+        	offsetY[1] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetY[1]));
         }
         s = a.getString(R.styleable.GraphAttributes_startX2);
         if (s != null) {
@@ -100,18 +124,18 @@ public class GraphAttributes extends View {
         
 		s = a.getString(R.styleable.GraphAttributes_sizeRatio3);
         if (s != null) {
-            sizeRatio[2] = Integer.parseInt(s);
-            System.out.println(Integer.toString(sizeRatio[2]));
+            sizeRatio[2] = Float.parseFloat(s);
+            System.out.println(Float.toString(sizeRatio[2]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetX3);
         if (s != null) {
-        	offsetX[2] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetX[2]));
+        	offsetX[2] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetX[2]));
         }
         s = a.getString(R.styleable.GraphAttributes_offsetY3);
         if (s != null) {
-        	offsetY[2] = Integer.parseInt(s);
-            System.out.println(Integer.toString(offsetY[2]));
+        	offsetY[2] = Float.parseFloat(s);
+            System.out.println(Float.toString(offsetY[2]));
         }
         s = a.getString(R.styleable.GraphAttributes_startX3);
         if (s != null) {

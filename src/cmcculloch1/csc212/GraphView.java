@@ -9,7 +9,7 @@ import android.view.View;
 public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
 	Bitmap fg = null;	// Foreground bitmap holds more dynamic image of secants
-
+	GraphAttributes gAttr;	// Attributes of the 3 equations
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
@@ -28,10 +28,15 @@ public class GraphView extends View {
 		init();
 	}
 
+	public void setAttributes(GraphAttributes gAttr) {
+		this.gAttr = gAttr;
+	}
+	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		createBMPs();
+		testInterpolation();
 	}
 
 	@Override
@@ -68,4 +73,23 @@ public class GraphView extends View {
 	private void init() {
 	}
 	
+	private void testInterpolation() {
+		GraphInterpolate interpolateTest = 
+				new GraphInterpolate(gAttr.getSizeRatio(0),			// 32
+									 gAttr.getOffsetX(0),			// 0
+									 gAttr.getOffsetY(0),			// 0
+									 this.getMeasuredWidth(),		// ?
+									 this.getMeasuredHeight());		// ?
+		Point2D temp;
+		System.out.println("Printing conversions...");
+		temp = interpolateTest.graphToBmp(new Point2D(0, 0));
+		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+								Double.toString(temp.getY()) + ")");
+		temp = interpolateTest.graphToBmp(new Point2D(1, 1));
+		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+								Double.toString(temp.getY()) + ")");
+		temp = interpolateTest.graphToBmp(new Point2D(-1, -1));
+		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+								Double.toString(temp.getY()) + ")");
+	}
 }
