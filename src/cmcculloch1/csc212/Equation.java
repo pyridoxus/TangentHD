@@ -12,12 +12,22 @@ public class Equation {
 	protected float startX;
 	protected float endX;
 	protected String name;
+	protected Bitmap bmp;
 	
 	public Equation(Bitmap bmp, float sizeRatio, float offsetX, float offsetY,
 					float startX, float endX, String name) {
-		
+		this.bmp = bmp;
+		this.sizeRatio = sizeRatio;
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+		this.startX = startX;
+		this.endX = endX;
 	}
 
+	public void draw() {
+		// Override me.
+	}
+	
 	public float getSizeRatio() {
 		return sizeRatio;
 	}
@@ -67,9 +77,6 @@ public class Equation {
 	}
 
 	public Point2D getData(int idx) {
-		//TODO: This means that using an index here causes the seekbars to be
-		// indexers and not pure "x to y". Need to add seekbar range to the
-		// XML data in the GraphAttributes.
 		return data.get(idx);
 	}
 }
