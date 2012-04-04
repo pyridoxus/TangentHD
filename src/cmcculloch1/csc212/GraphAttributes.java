@@ -12,6 +12,7 @@ public class GraphAttributes extends View {
 	private float[] offsetY = new float[3];
 	private float[] startX = new float[3];
 	private float[] endX = new float[3];
+	private float[] stepX = new float[3];
 	private String[] name = new String[3];
 	private int[] seekLeftStart = new int[3];
 	private int[] seekLeftEnd = new int[3];
@@ -55,6 +56,10 @@ public class GraphAttributes extends View {
 		return this.endX[idx];
 	}
 	
+	public float getStepX(int idx) {
+		return this.stepX[idx];
+	}
+	
 	public String getName(int idx) {
 		return this.name[idx];
 	}
@@ -90,6 +95,8 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_startX1));
 		endX[0] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX1));
+		stepX[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_stepX1));
 		name[0] = a.getString(R.styleable.GraphAttributes_name1);
 		seekLeftStart[0] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekLeftStart1));
@@ -111,6 +118,8 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_startX2));
 		endX[1] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX2));
+		stepX[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_stepX2));
 		name[1] = a.getString(R.styleable.GraphAttributes_name2);
 		seekLeftStart[1] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekLeftStart2));
@@ -132,6 +141,8 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_startX3));
 		endX[2] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX3));
+		stepX[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_stepX3));
 		name[2] = a.getString(R.styleable.GraphAttributes_name3);
 		seekLeftStart[2] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekLeftStart3));

@@ -3,28 +3,36 @@ package cmcculloch1.csc212;
 import java.util.ArrayList;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 public class Equation {
-	private ArrayList<Point2D> data;
+	protected ArrayList<Point2D> data;
 	protected float sizeRatio;
 	protected float offsetX;
 	protected float offsetY;
 	protected float startX;
 	protected float endX;
+	protected float stepX;
 	protected String name;
 	protected Bitmap bmp;
+	protected Paint paint;
 	
 	public Equation(Bitmap bmp, float sizeRatio, float offsetX, float offsetY,
-					float startX, float endX, String name) {
+					float startX, float endX, float stepX, String name) {
 		this.bmp = bmp;
 		this.sizeRatio = sizeRatio;
 		this.offsetX = offsetX;
 		this.offsetY = offsetY;
 		this.startX = startX;
 		this.endX = endX;
+		this.stepX = stepX;
+		this.name = name;
+		this.data = new ArrayList<Point2D>();
+		this.paint = new Paint();
 	}
 
-	public void draw() {
+	public void draw(Canvas canvas) {
 		// Override me.
 	}
 	
