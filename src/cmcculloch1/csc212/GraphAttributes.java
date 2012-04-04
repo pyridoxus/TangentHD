@@ -13,6 +13,10 @@ public class GraphAttributes extends View {
 	private float[] startX = new float[3];
 	private float[] endX = new float[3];
 	private String[] name = new String[3];
+	private int[] seekLeftStart = new int[3];
+	private int[] seekLeftEnd = new int[3];
+	private int[] seekRightStart = new int[3];
+	private int[] seekRightEnd = new int[3];
 	
 	public GraphAttributes(Context context) {
 		super(context);
@@ -55,6 +59,22 @@ public class GraphAttributes extends View {
 		return this.name[idx];
 	}
 	
+	public int getSeekLeftStart(int idx) {
+		return this.seekLeftStart[idx];
+	}
+	
+	public int getSeekLeftEnd(int idx) {
+		return this.seekLeftEnd[idx];
+	}
+	
+	public int getSeekRighttStart(int idx) {
+		return this.seekRightStart[idx];
+	}
+	
+	public int getSeekRightEnd(int idx) {
+		return this.seekRightEnd[idx];
+	}
+	
 	private void init_res(Context context, AttributeSet attrs) {
 		TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.GraphAttributes);
@@ -71,6 +91,14 @@ public class GraphAttributes extends View {
 		endX[0] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX1));
 		name[0] = a.getString(R.styleable.GraphAttributes_name1);
+		seekLeftStart[0] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftStart1));
+		seekLeftEnd[0] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftEnd1));
+		seekRightStart[0] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightStart1));
+		seekRightEnd[0] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightEnd1));
         
 		// Second equation (y = | x ^ 2 - 1 |)
 		sizeRatio[1] = Float.parseFloat(
@@ -84,6 +112,14 @@ public class GraphAttributes extends View {
 		endX[1] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX2));
 		name[1] = a.getString(R.styleable.GraphAttributes_name2);
+		seekLeftStart[1] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftStart2));
+		seekLeftEnd[1] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftEnd2));
+		seekRightStart[1] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightStart2));
+		seekRightEnd[1] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightEnd2));
         
 		// Third equation (x ^ (2/3) + y ^ (2/3) = 1)
 		sizeRatio[2] = Float.parseFloat(
@@ -97,6 +133,14 @@ public class GraphAttributes extends View {
 		endX[2] = Float.parseFloat(
 				a.getString(R.styleable.GraphAttributes_endX3));
 		name[2] = a.getString(R.styleable.GraphAttributes_name3);
+		seekLeftStart[2] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftStart3));
+		seekLeftEnd[2] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekLeftEnd3));
+		seekRightStart[2] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightStart3));
+		seekRightEnd[2] = Integer.parseInt(
+				a.getString(R.styleable.GraphAttributes_seekRightEnd3));
         
         a.recycle();
 	}
