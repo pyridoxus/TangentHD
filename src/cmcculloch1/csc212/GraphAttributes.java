@@ -83,6 +83,7 @@ public class GraphAttributes extends View {
 	private void init_res(Context context, AttributeSet attrs) {
 		TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.GraphAttributes);
+		//TODO: Need to add color schemes later. Schemes will be stored in XML.
 
 		// First equation (y = x ^ 3)
 		sizeRatio[0] = Float.parseFloat(

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 
 public class PowerEq extends Equation {
 
+	//TODO: Need to add color schemes later. Schemes will be stored in XML.
 	public PowerEq(Bitmap bmp, float sizeRatio, float offsetX, float offsetY,
 					float startX, float endX, float stepX, String name) {
 		super(bmp, sizeRatio, offsetX, offsetY, startX, endX, stepX, name);
