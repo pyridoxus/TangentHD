@@ -33,7 +33,9 @@ public class GraphView extends View {
 	}
 
 	public void setAttributes(GraphAttributes gAttr) {
+		System.out.println("Inside setAttributes()");
 		this.gAttr = gAttr;
+		buildEquations();
 	}
 	
 	@Override
@@ -78,7 +80,8 @@ public class GraphView extends View {
 		fg = Bitmap.createBitmap(bg);
 	}
 	
-	private void init() {
+	private void buildEquations() {
+		System.out.println("Inside buildEquations()");
 		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
 				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
 							gAttr.getStepX(0), gAttr.getName(0));
@@ -88,6 +91,10 @@ public class GraphView extends View {
 		astroidEq = new AstroidEq(gAttr.getSizeRatio(2), gAttr.getOffsetX(2),
 				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
 							gAttr.getStepX(2), gAttr.getName(2));
+	}
+	
+	private void init() {
+		System.out.println("Inside init()");
 	}
 	
 	private void testInterpolation() {
