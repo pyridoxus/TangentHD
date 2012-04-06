@@ -66,7 +66,7 @@ public class GraphView extends View {
 			parabolaEq.setBmp(bg);
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
-			setCurrentEquation();
+			setInternalEquation();
 			testInterpolation();
 			testEquation(powerEq);
 			testEquation(parabolaEq);
@@ -156,12 +156,23 @@ public class GraphView extends View {
 		System.out.println(g.toString());
 	}
 	
-	private void setCurrentEquation() {
+	private void setInternalEquation() {
 		switch (currentEq) {
 			case 0: theEquation = powerEq; break;
 			case 1: theEquation = parabolaEq; break;
 			case 2: theEquation = astroidEq; break;
 			default: theEquation = null;	// To cause error later
 		}
+	}
+
+	public void setEquation(int eq) {
+		currentEq = eq;
+		setInternalEquation();
+		// Need to build new grid to the size and offset of equation
+		grid = new Grid(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq),
+				gAttr.getOffsetY(currentEq));
+		grid.setBmp(bg);
+		this.invalidate();
 	}
 }
