@@ -115,6 +115,7 @@ public class GraphView extends View {
 			theEquation.draw(canvas);
 			fullRedraw = false;
 		}
+		fg = bg.copy(bg.getConfig(), true);
 		leftSecant.draw(canvas);
 		rightSecant.draw(canvas);
 	}
