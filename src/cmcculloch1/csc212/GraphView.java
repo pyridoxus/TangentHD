@@ -19,6 +19,7 @@ public class GraphView extends View {
 	Secant leftSecant = null;		// Secant left of point of interest
 	Secant rightSecant = null;		// Secant right of point of interest
 	int currentEq = 0;				// Index of current equation
+	boolean fullRedraw = true;		// If true, do full redraw, else do partial
 	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
@@ -98,8 +99,8 @@ public class GraphView extends View {
 			parabolaEq.setBmp(bg);
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
-			leftSecant.setBmp(bg);
-			rightSecant.setBmp(bg);
+			leftSecant.setBmp(fg);
+			rightSecant.setBmp(fg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -109,12 +110,15 @@ public class GraphView extends View {
 			testSecant(leftSecant);
 			testSecant(rightSecant);
 		}
-		grid.draw(canvas);
-		theEquation.draw(canvas);
+		if(fullRedraw == true) {
+			grid.draw(canvas);
+			theEquation.draw(canvas);
+			fullRedraw = false;
+		}
 		leftSecant.draw(canvas);
 		rightSecant.draw(canvas);
 	}
-
+	
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -213,6 +217,7 @@ public class GraphView extends View {
 		rightSecant.setColor(Color.RED);
 		rightSecant.setBmp(bg);
 		presetSecants();
+		fullRedraw = true;
 		this.invalidate();
 	}
 }
