@@ -74,6 +74,9 @@
 		TangentHD:seekLeftEnd1="50"
 		TangentHD:seekRightStart1="50"
 		TangentHD:seekRightEnd1="100"
+		TangentHD:pointX1="0.0"
+		TangentHD:pointY1="0.0"
+		
 		TangentHD:sizeRatio2="64.0"
 		TangentHD:offsetX2="0.0"
 		TangentHD:offsetY2="1.0"
@@ -85,6 +88,9 @@
 		TangentHD:seekLeftEnd2="50"
 		TangentHD:seekRightStart2="50"
 		TangentHD:seekRightEnd2="100"
+		TangentHD:pointX2="-1.0"
+		TangentHD:pointY2="0.0"
+		
 		TangentHD:sizeRatio3="128.0"
 		TangentHD:offsetX3="0.0"
 		TangentHD:offsetY3="1.0"
@@ -96,6 +102,9 @@
 		TangentHD:seekLeftEnd3="50"
 		TangentHD:seekRightStart3="50"
 		TangentHD:seekRightEnd3="100"
+		TangentHD:pointX3="0.0"
+		TangentHD:pointY3="1.0"
+		
 	/>
 
 </LinearLayout>

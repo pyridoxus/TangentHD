@@ -18,6 +18,8 @@ public class GraphAttributes extends View {
 	private int[] seekLeftEnd = new int[3];
 	private int[] seekRightStart = new int[3];
 	private int[] seekRightEnd = new int[3];
+	private float[] pointX = new float[3];
+	private float[] pointY = new float[3];
 	
 	public GraphAttributes(Context context) {
 		super(context);
@@ -79,6 +81,14 @@ public class GraphAttributes extends View {
 	public int getSeekRightEnd(int idx) {
 		return this.seekRightEnd[idx];
 	}
+
+	public float getPointX(int idx) {
+		return this.pointX[idx];
+	}
+	
+	public float getPointY(int idx) {
+		return this.pointY[idx];
+	}
 	
 	private void init_res(Context context, AttributeSet attrs) {
 		TypedArray a = context.obtainStyledAttributes(attrs,
@@ -107,6 +117,10 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_seekRightStart1));
 		seekRightEnd[0] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekRightEnd1));
+		pointX[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointX1));
+		pointY[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointY1));
         
 		// Second equation (y = | x ^ 2 - 1 |)
 		sizeRatio[1] = Float.parseFloat(
@@ -130,6 +144,10 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_seekRightStart2));
 		seekRightEnd[1] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekRightEnd2));
+		pointX[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointX2));
+		pointY[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointY2));
         
 		// Third equation (x ^ (2/3) + y ^ (2/3) = 1)
 		sizeRatio[2] = Float.parseFloat(
@@ -153,6 +171,10 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_seekRightStart3));
 		seekRightEnd[2] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_seekRightEnd3));
+		pointX[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointX3));
+		pointY[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_pointY3));
         
         a.recycle();
 	}

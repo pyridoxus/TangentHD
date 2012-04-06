@@ -3,6 +3,7 @@ package cmcculloch1.csc212;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -15,8 +16,8 @@ public class GraphView extends View {
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
 	Equation theEquation = null;	// The current equation object
 	Grid grid = null;				// The background grid
-	LeftSecant leftSecant = null;	// Secant left of point of interest
-	RightSecant RightSecant = null;	// Secant right of point of interest
+	Secant leftSecant = null;	// Secant left of point of interest
+	Secant rightSecant = null;	// Secant right of point of interest
 	int currentEq = 0;				// Index of current equation
 	
 	public GraphView(Context context) {
@@ -69,11 +70,13 @@ public class GraphView extends View {
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
 			setInternalEquation();
-			testInterpolation();
-			testEquation(powerEq);
-			testEquation(parabolaEq);
-			testEquation(astroidEq);
-			testGrid(grid);
+//			testInterpolation();
+//			testEquation(powerEq);
+//			testEquation(parabolaEq);
+//			testEquation(astroidEq);
+//			testGrid(grid);
+			testSecant(leftSecant);
+			testSecant(rightSecant);
 		}
 		grid.draw(canvas);
 		theEquation.draw(canvas);
@@ -116,8 +119,17 @@ public class GraphView extends View {
 				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
 							gAttr.getStepX(2), gAttr.getName(2));
 		grid = new Grid(gAttr.getSizeRatio(currentEq),
-				gAttr.getOffsetX(currentEq),
-				gAttr.getOffsetY(currentEq));
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getStartX(currentEq), gAttr.getPointX(currentEq),
+				gAttr.getStepX(currentEq));
+		leftSecant.setColor(Color.MAGENTA);
+		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getPointX(currentEq), gAttr.getEndX(currentEq),
+				gAttr.getStepX(currentEq));
+		rightSecant.setColor(Color.RED);
 	}
 	
 	private void init() {
@@ -156,6 +168,10 @@ public class GraphView extends View {
 	
 	private void testGrid(Grid g) {
 		System.out.println(g.toString());
+	}
+	
+	private void testSecant(Secant s) {
+		System.out.println(s.toString());
 	}
 	
 	private void setInternalEquation() {

@@ -97,7 +97,23 @@ public class Secant extends GraphInterpolate{
 	}
 	
 	public void draw(Canvas canvas) {
-		
+		//TODO: Finish
+	}
+
+	@Override
+	public String toString() {
+		String s = new String();
+		s = "--- Secant ---\n";
+		s += "Hash Code: " + this.hashCode() +"\n";
+		s += "sizeRatio: " + this.sizeRatio + "\n";
+		s += "offsetX: " + this.offsetX + "\n";
+		s += "offsetY: " + this.offsetY + "\n";
+		s += "startX: " + this.startX + "\n";
+		s += "endX: " + this.endX + "\n";
+		s += "stepX: " + this.stepX + "\n";
+		s += "Color: " + this.paint.getColor() + "\n";
+		s += "--- End of Secant ---\n";
+		return s;
 	}
 
 }

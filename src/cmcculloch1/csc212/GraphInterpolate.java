@@ -46,12 +46,12 @@ public class GraphInterpolate extends GraphObjectBase {
 		bmpX = (double)this.bmp.getWidth();
 		bmpY = (double)this.bmp.getHeight();
 		// If x, y offsets are 0, 0, then origin of graph is center of bitmap.
-		System.out.println("Inside graphToBmp");
-		System.out.println(Double.toString(x) + ", " + Double.toString(y));
+//		System.out.println("Inside graphToBmp");
+//		System.out.println(Double.toString(x) + ", " + Double.toString(y));
 		q.setX((bmpX / 2.0) + (x - this.offsetX) * this.sizeRatio);
 		q.setY((bmpY / 2.0) - (y - this.offsetY) * this.sizeRatio);
-		System.out.println(Double.toString(q.getX()) + ", " + Double.toString(q.getY()));
-		System.out.println("Leaving graphToBmp");
+//		System.out.println(Double.toString(q.getX()) + ", " + Double.toString(q.getY()));
+//		System.out.println("Leaving graphToBmp");
 	}
 	
 	public void bmpToGraph(double x, double y) {
