@@ -10,6 +10,10 @@ public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
 	Bitmap fg = null;	// Foreground bitmap holds more dynamic image of secants
 	GraphAttributes gAttr;	// Attributes of the 3 equations
+	PowerEq powerEq = null;			// y = x^3
+	ParabolaEq parabolaEq = null;	// y = |x^2 - 1|
+	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
+	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
 		super(context);
@@ -36,7 +40,11 @@ public class GraphView extends View {
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		createBMPs();
+		powerEq.setBmp(bg);
+		parabolaEq.setBmp(bg);
+		astroidEq.setBmp(bg);
 		testInterpolation();
+		testEquation(powerEq);
 	}
 
 	@Override
@@ -71,15 +79,23 @@ public class GraphView extends View {
 	}
 	
 	private void init() {
+		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
+				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
+							gAttr.getStepX(0), gAttr.getName(0));
+		parabolaEq = new ParabolaEq(gAttr.getSizeRatio(1), gAttr.getOffsetX(1),
+				gAttr.getOffsetY(1), gAttr.getStartX(1), gAttr.getEndX(1),
+							gAttr.getStepX(1), gAttr.getName(1));
+		astroidEq = new AstroidEq(gAttr.getSizeRatio(2), gAttr.getOffsetX(2),
+				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
+							gAttr.getStepX(2), gAttr.getName(2));
 	}
 	
 	private void testInterpolation() {
 		GraphInterpolate interpolateTest = 
-				new GraphInterpolate(gAttr.getSizeRatio(0),			// 32
-									 gAttr.getOffsetX(0),			// 0
-									 gAttr.getOffsetY(0),			// 0
-									 this.getMeasuredWidth(),		// ?
-									 this.getMeasuredHeight());		// ?
+				new GraphInterpolate(gAttr.getSizeRatio(0),
+									 gAttr.getOffsetX(0),
+									 gAttr.getOffsetY(0));
+		interpolateTest.setBmp(bg);
 		Point2D temp;
 		System.out.println("Printing conversions...");
 		temp = interpolateTest.graphToBmp(new Point2D(0, 0));
@@ -91,5 +107,10 @@ public class GraphView extends View {
 		temp = interpolateTest.graphToBmp(new Point2D(-1, -1));
 		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 								Double.toString(temp.getY()) + ")");
+	}
+
+	private void testEquation(Equation eq) {
+		System.out.println("Inside testEquation");
+		System.out.println(eq.toString());
 	}
 }

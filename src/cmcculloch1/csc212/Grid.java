@@ -1,12 +1,11 @@
 package cmcculloch1.csc212;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Grid extends GraphObjectBase {
+public class Grid extends GraphInterpolate {
 
-	public Grid(Bitmap bmp, float sizeRatio, float offsetX, float offsetY) {
-		super(bmp, sizeRatio, offsetX, offsetY);
+	public Grid(double sizeRatio, double offsetX, double offsetY) {
+		super(sizeRatio, offsetX, offsetY);
 	}
 
 	public void draw(Canvas canvas) {

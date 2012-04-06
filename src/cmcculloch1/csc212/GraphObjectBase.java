@@ -4,36 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 
 public class GraphObjectBase {
-	protected float sizeRatio;
-	protected float offsetX;
-	protected float offsetY;
 	protected Bitmap bmp;
 	protected Paint paint;
-	public GraphObjectBase(Bitmap bmp, float sizeRatio, float offsetX,
-							float offsetY) {
-		this.bmp = bmp;
-		this.sizeRatio = sizeRatio;
-		this.offsetX = offsetX;
-		this.offsetY = offsetY;
+	public GraphObjectBase() {
+		this.bmp = null;
 		this.paint = new Paint();
-	}
-	public float getSizeRatio() {
-		return sizeRatio;
-	}
-	public void setSizeRatio(float sizeRatio) {
-		this.sizeRatio = sizeRatio;
-	}
-	public float getOffsetX() {
-		return offsetX;
-	}
-	public void setOffsetX(float offsetX) {
-		this.offsetX = offsetX;
-	}
-	public float getOffsetY() {
-		return offsetY;
-	}
-	public void setOffsetY(float offsetY) {
-		this.offsetY = offsetY;
 	}
 	public Bitmap getBmp() {
 		return bmp;
