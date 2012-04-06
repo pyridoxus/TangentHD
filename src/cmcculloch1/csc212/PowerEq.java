@@ -8,11 +8,10 @@ public class PowerEq extends Equation {
 	public PowerEq(float sizeRatio, float offsetX, float offsetY,
 					float startX, float endX, float stepX, String name) {
 		super(sizeRatio, offsetX, offsetY, startX, endX, stepX, name);
-		Point2D p = new Point2D();
-		for(float x = startX; x <= endX; x += stepX) {
-			p.setX(x);
-			p.setY(Math.abs(x * x - 1.0));
-			this.data.add(p);
+		double x, y;
+		for(x = startX; x <= endX; x += stepX) {
+			y = x * x * x;
+			this.data.add(new Point2D(x, y));
 		}
 	}
 

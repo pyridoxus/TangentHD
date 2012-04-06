@@ -8,13 +8,10 @@ public class ParabolaEq extends Equation {
 	public ParabolaEq(double sizeRatio, double offsetX,	double offsetY,
 			double startX, double endX, double stepX, String name) {
 		super(sizeRatio, offsetX, offsetY, startX, endX, stepX, name);
-		Point2D p = new Point2D();
-		for(double x = startX; x <= endX; x += stepX) {
-			p.setX(x);
-			p.setY(x * x * x);
-			this.data.add(p);
-			System.out.println(Double.toString(p.getX()) + ", " +
-								Double.toString(p.getY())); 
+		double x, y;
+		for(x = startX; x <= endX; x += stepX) {
+			y = Math.abs(x * x - 1.0);
+			this.data.add(new Point2D(x, y));
 		}
 	}
 
