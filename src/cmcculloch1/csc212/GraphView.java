@@ -16,8 +16,8 @@ public class GraphView extends View {
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
 	Equation theEquation = null;	// The current equation object
 	Grid grid = null;				// The background grid
-	Secant leftSecant = null;	// Secant left of point of interest
-	Secant rightSecant = null;	// Secant right of point of interest
+	Secant leftSecant = null;		// Secant left of point of interest
+	Secant rightSecant = null;		// Secant right of point of interest
 	int currentEq = 0;				// Index of current equation
 	
 	public GraphView(Context context) {
@@ -44,19 +44,48 @@ public class GraphView extends View {
 		buildGraphObjects();
 	}
 	
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
-//		createBMPs();
-//		powerEq.setBmp(bg);
-//		parabolaEq.setBmp(bg);
-//		astroidEq.setBmp(bg);
-//		testInterpolation();
-//		testEquation(powerEq);
-//		testEquation(parabolaEq);
-//		testEquation(astroidEq);
+	private void buildGraphObjects() {
+		// This can be done any time, because it does not rely on the
+		// existence of the bitmaps. This is done just after we get the
+		// attributes inflated.
+		System.out.println("Inside buildGraphObjects()");
+		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
+				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
+							gAttr.getStepX(0), gAttr.getName(0));
+		parabolaEq = new ParabolaEq(gAttr.getSizeRatio(1), gAttr.getOffsetX(1),
+				gAttr.getOffsetY(1), gAttr.getStartX(1), gAttr.getEndX(1),
+							gAttr.getStepX(1), gAttr.getName(1));
+		astroidEq = new AstroidEq(gAttr.getSizeRatio(2), gAttr.getOffsetX(2),
+				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
+							gAttr.getStepX(2), gAttr.getName(2));
+		setInternalEquation();
+		grid = new Grid(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				0, gAttr.getSecantMid(currentEq),
+				gAttr.getStepX(currentEq));
+		leftSecant.setColor(Color.MAGENTA);
+		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
+				gAttr.getStepX(currentEq));
+		rightSecant.setColor(Color.RED);
+		presetSecants();
 	}
-
+	
+	private void presetSecants() {
+		// Set the end points of line segment of secant to present positions
+		// that use indices within the equation data, and not recalculating
+		// everything.
+		int idx = 0;
+		leftSecant.setP(theEquation.getData(idx));
+		idx = gAttr.getSecantMid(currentEq);
+		leftSecant.setQ(theEquation.getData(idx));
+		rightSecant.setP(theEquation.getData(idx));
+		rightSecant.setQ(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
+	}
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
@@ -69,6 +98,8 @@ public class GraphView extends View {
 			parabolaEq.setBmp(bg);
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
+			leftSecant.setBmp(bg);
+			rightSecant.setBmp(bg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -80,6 +111,8 @@ public class GraphView extends View {
 		}
 		grid.draw(canvas);
 		theEquation.draw(canvas);
+		leftSecant.draw(canvas);
+		rightSecant.draw(canvas);
 	}
 
 	@Override
@@ -105,31 +138,6 @@ public class GraphView extends View {
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
 		fg = Bitmap.createBitmap(bg);
-	}
-	
-	private void buildGraphObjects() {
-		System.out.println("Inside buildEquations()");
-		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
-				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
-							gAttr.getStepX(0), gAttr.getName(0));
-		parabolaEq = new ParabolaEq(gAttr.getSizeRatio(1), gAttr.getOffsetX(1),
-				gAttr.getOffsetY(1), gAttr.getStartX(1), gAttr.getEndX(1),
-							gAttr.getStepX(1), gAttr.getName(1));
-		astroidEq = new AstroidEq(gAttr.getSizeRatio(2), gAttr.getOffsetX(2),
-				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
-							gAttr.getStepX(2), gAttr.getName(2));
-		grid = new Grid(gAttr.getSizeRatio(currentEq),
-				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
-		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
-				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
-				gAttr.getStartX(currentEq), gAttr.getPointX(currentEq),
-				gAttr.getStepX(currentEq));
-		leftSecant.setColor(Color.MAGENTA);
-		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
-				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
-				gAttr.getPointX(currentEq), gAttr.getEndX(currentEq),
-				gAttr.getStepX(currentEq));
-		rightSecant.setColor(Color.RED);
 	}
 	
 	private void init() {
@@ -191,6 +199,20 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq),
 				gAttr.getOffsetY(currentEq));
 		grid.setBmp(bg);
+
+		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				0, gAttr.getSecantMid(currentEq), gAttr.getStepX(currentEq));
+		leftSecant.setColor(Color.MAGENTA);
+		leftSecant.setBmp(bg);
+
+		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
+				gAttr.getStepX(currentEq));
+		rightSecant.setColor(Color.RED);
+		rightSecant.setBmp(bg);
+		presetSecants();
 		this.invalidate();
 	}
 }

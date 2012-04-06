@@ -74,8 +74,8 @@
 		TangentHD:seekLeftEnd1="50"
 		TangentHD:seekRightStart1="50"
 		TangentHD:seekRightEnd1="100"
-		TangentHD:pointX1="0.0"
-		TangentHD:pointY1="0.0"
+		TangentHD:secantMid1="30"
+		TangentHD:secantEnd1="60"
 		
 		TangentHD:sizeRatio2="64.0"
 		TangentHD:offsetX2="0.0"
@@ -88,8 +88,8 @@
 		TangentHD:seekLeftEnd2="50"
 		TangentHD:seekRightStart2="50"
 		TangentHD:seekRightEnd2="100"
-		TangentHD:pointX2="-1.0"
-		TangentHD:pointY2="0.0"
+		TangentHD:secantMid2="30"
+		TangentHD:secantEnd2="60"
 		
 		TangentHD:sizeRatio3="128.0"
 		TangentHD:offsetX3="0.0"
@@ -102,8 +102,8 @@
 		TangentHD:seekLeftEnd3="50"
 		TangentHD:seekRightStart3="50"
 		TangentHD:seekRightEnd3="100"
-		TangentHD:pointX3="0.0"
-		TangentHD:pointY3="1.0"
+		TangentHD:secantMid3="50"
+		TangentHD:secantEnd3="100"
 		
 	/>
 

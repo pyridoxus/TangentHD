@@ -12,8 +12,8 @@
 		<attr name="seekLeftEnd1" format="integer" />
 		<attr name="seekRightStart1" format="integer" />
 		<attr name="seekRightEnd1" format="integer" />
-		<attr name="pointX1" format="float" />
-		<attr name="pointY1" format="float" />
+		<attr name="secantMid1" format="integer" />
+		<attr name="secantEnd1" format="integer" />
 				
 		<attr name="sizeRatio2" format="float" />
 		<attr name="offsetX2" format="float" />
@@ -26,8 +26,8 @@
 		<attr name="seekLeftEnd2" format="integer" />
 		<attr name="seekRightStart2" format="integer" />
 		<attr name="seekRightEnd2" format="integer" />
-		<attr name="pointX2" format="float" />
-		<attr name="pointY2" format="float" />
+		<attr name="secantMid2" format="integer" />
+		<attr name="secantEnd2" format="integer" />
 		
 		<attr name="sizeRatio3" format="float" />
 		<attr name="offsetX3" format="float" />
@@ -40,7 +40,7 @@
 		<attr name="seekLeftEnd3" format="integer" />
 		<attr name="seekRightStart3" format="integer" />
 		<attr name="seekRightEnd3" format="integer" />
-		<attr name="pointX3" format="float" />
-		<attr name="pointY3" format="float" />
+		<attr name="secantMid3" format="integer" />
+		<attr name="secantEnd3" format="integer" />
 	</declare-styleable>
 </resources>

@@ -76,16 +76,8 @@ public class Secant extends GraphInterpolate{
 		return m;
 	}
 
-	public void setM(double m) {
-		this.m = m;
-	}
-
 	public double getB() {
 		return b;
-	}
-
-	public void setB(double b) {
-		this.b = b;
 	}
 
 	public int getColor() {
@@ -97,7 +89,16 @@ public class Secant extends GraphInterpolate{
 	}
 	
 	public void draw(Canvas canvas) {
-		//TODO: Finish
+		Point2D s = new Point2D(0, 0);
+		Point2D t = new Point2D(0, 0);
+		graphToBmp(p.getX(), p.getY());
+		s.setX(getInterpX());
+		s.setY(getInterpY());
+		graphToBmp(q.getX(), q.getY());
+		t.setX(getInterpX());
+		t.setY(getInterpY());
+		canvas.drawLine((float)s.getX(), (float)s.getY(),
+					(float)t.getX(), (float)t.getY(), paint);
 	}
 
 	@Override
