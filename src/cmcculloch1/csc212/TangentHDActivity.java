@@ -9,10 +9,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class TangentHDActivity extends Activity {
 	private GraphView graph;
+	private SeekBar leftSeekBar;
+	private SeekBar rightSeekBar;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,8 @@ public class TangentHDActivity extends Activity {
         graph = (GraphView) findViewById(R.id.graphView);
         graph.setAttributes((GraphAttributes)findViewById(R.id.graphAttributes));
         registerForContextMenu(graph);
+        setupLeftSeekBar();
+        setupRightSeekBar();
     }
     
     @Override
@@ -104,4 +109,63 @@ public class TangentHDActivity extends Activity {
         toast.show();
         return true;
     }
+    
+    private void setupLeftSeekBar() {
+    	leftSeekBar = (SeekBar)findViewById(R.id.seekBar1);
+        leftSeekBar.setOnSeekBarChangeListener(
+        				new SeekBar.OnSeekBarChangeListener() {
+        	@Override
+        	public void onProgressChanged(SeekBar seekBar, int progress,
+        			boolean fromUser) {
+        		TangentHDActivity.leftSeekBarCB(R.id.seekBar1, progress);        		
+        	}
+
+        	@Override
+        	public void onStartTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+
+        	@Override
+        	public void onStopTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+        });
+    }
+    
+    private static void leftSeekBarCB(int ID, int progress) {
+    	System.out.println("Left Seekbar: " + Integer.toString(ID) +
+    						" progress: " + progress);
+    }
+
+    private void setupRightSeekBar() {
+    	rightSeekBar = (SeekBar)findViewById(R.id.seekBar2);
+    	rightSeekBar.setOnSeekBarChangeListener(
+        				new SeekBar.OnSeekBarChangeListener() {
+        	@Override
+        	public void onProgressChanged(SeekBar seekBar, int progress,
+        			boolean fromUser) {
+        		TangentHDActivity.rightSeekBarCB(R.id.seekBar2, progress);        		
+        	}
+
+        	@Override
+        	public void onStartTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+
+        	@Override
+        	public void onStopTrackingTouch(SeekBar seekBar) {
+        		// TODO Auto-generated method stub
+        		
+        	}
+        });
+    }
+    
+    private static void rightSeekBarCB(int ID, int progress) {
+    	System.out.println("Right Seekbar: " + Integer.toString(ID) +
+    						" progress: " + progress);
+    }
+
 }

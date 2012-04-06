@@ -88,7 +88,7 @@
 		TangentHD:seekLeftEnd2="50"
 		TangentHD:seekRightStart2="50"
 		TangentHD:seekRightEnd2="100"
-		TangentHD:secantMid2="30"
+		TangentHD:secantMid2="20"
 		TangentHD:secantEnd2="60"
 		
 		TangentHD:sizeRatio3="128.0"
