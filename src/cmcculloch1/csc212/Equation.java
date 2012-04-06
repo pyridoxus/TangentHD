@@ -47,7 +47,26 @@ public class Equation extends GraphInterpolate {
 	}
 
 	public void draw(Canvas canvas) {
-		// Override me.
+		Point2D p;
+		Point2D q = new Point2D(0, 0);
+		Point2D s = new Point2D(0, 0);
+		Point2D t = new Point2D(0, 0);
+		if(data.size() > 0) {
+			q = new Point2D(data.get(0)); // Initialize with first point
+		}
+		for(Iterator<Point2D> i = data.iterator(); i.hasNext();) {
+			p = i.next();
+			graphToBmp(p.getX(), p.getY());
+			s.setX(getInterpX());
+			s.setY(getInterpY());
+			graphToBmp(q.getX(), q.getY());
+			t.setX(getInterpX());
+			t.setY(getInterpY());
+			
+			canvas.drawLine((float)s.getX(), (float)s.getY(),
+					(float)t.getX(), (float)t.getY(), paint);
+			q = p;
+		}
 	}
 	
 	public double getStartX() {

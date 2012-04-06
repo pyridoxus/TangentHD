@@ -1,6 +1,7 @@
 package cmcculloch1.csc212;
 
-import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint.Style;
 
 public class PowerEq extends Equation {
 
@@ -13,10 +14,8 @@ public class PowerEq extends Equation {
 			y = x * x * x;
 			this.data.add(new Point2D(x, y));
 		}
-	}
-
-	@Override
-	public void draw(Canvas canvas) {
-		super.draw(canvas);
+		paint.setColor(Color.BLUE);
+		paint.setStrokeWidth(2);
+		paint.setStyle(Style.STROKE);
 	}
 }

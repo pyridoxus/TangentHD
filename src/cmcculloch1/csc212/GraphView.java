@@ -13,6 +13,7 @@ public class GraphView extends View {
 	PowerEq powerEq = null;			// y = x^3
 	ParabolaEq parabolaEq = null;	// y = |x^2 - 1|
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
+	Equation theEquation = null;	// The current equation object
 	Grid grid = null;				// The background grid
 	int currentEq = 0;				// Index of current equation
 	
@@ -65,6 +66,7 @@ public class GraphView extends View {
 			parabolaEq.setBmp(bg);
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
+			setCurrentEquation();
 			testInterpolation();
 			testEquation(powerEq);
 			testEquation(parabolaEq);
@@ -72,6 +74,7 @@ public class GraphView extends View {
 			testGrid(grid);
 		}
 		grid.draw(canvas);
+		theEquation.draw(canvas);
 	}
 
 	@Override
@@ -151,5 +154,14 @@ public class GraphView extends View {
 	
 	private void testGrid(Grid g) {
 		System.out.println(g.toString());
+	}
+	
+	private void setCurrentEquation() {
+		switch (currentEq) {
+			case 0: theEquation = powerEq; break;
+			case 1: theEquation = parabolaEq; break;
+			case 2: theEquation = astroidEq; break;
+			default: theEquation = null;	// To cause error later
+		}
 	}
 }
