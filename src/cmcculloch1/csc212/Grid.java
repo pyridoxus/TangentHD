@@ -17,11 +17,11 @@ public class Grid extends GraphInterpolate {
 		canvas.drawPaint(paint);
 		System.out.println("Drawing grid...");
 		
-		borderE = (float)(bmp.getWidth() / 2.0 / sizeRatio);
+		borderE = (float)(bmp.getWidth() / 2.0 / sizeRatio + offsetX);
 		float temp = borderE % 1;
 		borderE = borderE - temp + 1;
 		borderW = -borderE;
-		borderN = (float)(bmp.getHeight() / 2.0 / sizeRatio);
+		borderN = (float)(bmp.getHeight() / 2.0 / sizeRatio + offsetY);
 		temp = borderN % 1;
 		borderN = borderN - temp + 1;
 		borderS = -borderN;

@@ -9,8 +9,8 @@
     <string name="equation">y = f(x)</string>
     <string name="equation_selector">y = f(x)</string>
 	<string name="equation1">y = x ^ 3</string>
-	<string name="equation2">x ^ (2 / 3) + y ^ (2 / 3) = 1</string>
-	<string name="equation3">y = |x ^ 2 – 1|</string>
+	<string name="equation2">y = |x ^ 2 – 1|</string>
+	<string name="equation3">x ^ (2 / 3) + y ^ (2 / 3) = 1</string>
 	<string name="s_graphColor">f(x) color here…</string>
 	<string name="s_leftColor">Left secant color here…</string>
 	<string name="s_rightColor">Right secant color here…</string>

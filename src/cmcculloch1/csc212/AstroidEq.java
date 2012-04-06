@@ -11,7 +11,12 @@ public class AstroidEq extends Equation {
 		super(sizeRatio, offsetX, offsetY, startX, endX, stepX, name);
 		double x, y;
 		for(x = startX; x <= endX; x += stepX) {
-			y = Math.pow(1.0 - Math.pow(x, (2.0 / 3.0)), 1.5);
+			if(x < 0) {
+				y = Math.pow(1.0 - Math.pow(-x, (2.0 / 3.0)), 1.5);
+			}
+			else {
+				y = Math.pow(1.0 - Math.pow(x, (2.0 / 3.0)), 1.5);
+			}
 			this.data.add(new Point2D(x, y));
 		}
 		paint.setColor(Color.BLUE);
