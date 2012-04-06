@@ -15,6 +15,8 @@ public class GraphView extends View {
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
 	Equation theEquation = null;	// The current equation object
 	Grid grid = null;				// The background grid
+	LeftSecant leftSecant = null;	// Secant left of point of interest
+	RightSecant RightSecant = null;	// Secant right of point of interest
 	int currentEq = 0;				// Index of current equation
 	
 	public GraphView(Context context) {
