@@ -14,6 +14,8 @@ public class ParabolaEq extends Equation {
 			p.setX(x);
 			p.setY(x * x * x);
 			this.data.add(p);
+			System.out.println(Double.toString(p.getX()) + ", " +
+								Double.toString(p.getY())); 
 		}
 	}
 
