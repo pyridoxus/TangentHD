@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 
 public class GraphObjectBase {
-	protected Bitmap bmp;
+	protected Bitmap bmp = null;
 	protected Paint paint;
 	public GraphObjectBase() {
 		this.bmp = null;

@@ -13,6 +13,8 @@ public class GraphView extends View {
 	PowerEq powerEq = null;			// y = x^3
 	ParabolaEq parabolaEq = null;	// y = |x^2 - 1|
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
+	Grid grid = null;				// The background grid
+	int currentEq = 0;				// Index of current equation
 	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
@@ -35,24 +37,41 @@ public class GraphView extends View {
 	public void setAttributes(GraphAttributes gAttr) {
 		System.out.println("Inside setAttributes()");
 		this.gAttr = gAttr;
-		buildEquations();
+		buildGraphObjects();
 	}
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		createBMPs();
-		powerEq.setBmp(bg);
-		parabolaEq.setBmp(bg);
-		astroidEq.setBmp(bg);
-		testInterpolation();
-		testEquation(powerEq);
+//		createBMPs();
+//		powerEq.setBmp(bg);
+//		parabolaEq.setBmp(bg);
+//		astroidEq.setBmp(bg);
+//		testInterpolation();
+//		testEquation(powerEq);
+//		testEquation(parabolaEq);
+//		testEquation(astroidEq);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
+		if(bg == null) {
+			// First time this is called, so create everything according to
+			// the size of the layout.
+			createBMPs();
+			powerEq.setBmp(bg);
+			parabolaEq.setBmp(bg);
+			astroidEq.setBmp(bg);
+			grid.setBmp(bg);
+			testInterpolation();
+			testEquation(powerEq);
+			testEquation(parabolaEq);
+			testEquation(astroidEq);
+			testGrid(grid);
+		}
+		grid.draw(canvas);
 	}
 
 	@Override
@@ -80,7 +99,7 @@ public class GraphView extends View {
 		fg = Bitmap.createBitmap(bg);
 	}
 	
-	private void buildEquations() {
+	private void buildGraphObjects() {
 		System.out.println("Inside buildEquations()");
 		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
 				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
@@ -91,6 +110,9 @@ public class GraphView extends View {
 		astroidEq = new AstroidEq(gAttr.getSizeRatio(2), gAttr.getOffsetX(2),
 				gAttr.getOffsetY(2), gAttr.getStartX(2), gAttr.getEndX(2),
 							gAttr.getStepX(2), gAttr.getName(2));
+		grid = new Grid(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq),
+				gAttr.getOffsetY(currentEq));
 	}
 	
 	private void init() {
@@ -103,15 +125,21 @@ public class GraphView extends View {
 									 gAttr.getOffsetX(0),
 									 gAttr.getOffsetY(0));
 		interpolateTest.setBmp(bg);
-		Point2D temp;
+		Point2D temp = new Point2D();
 		System.out.println("Printing conversions...");
-		temp = interpolateTest.graphToBmp(new Point2D(0, 0));
+		interpolateTest.graphToBmp(0, 0);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
 		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 								Double.toString(temp.getY()) + ")");
-		temp = interpolateTest.graphToBmp(new Point2D(1, 1));
+		interpolateTest.graphToBmp(1, 1);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
 		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 								Double.toString(temp.getY()) + ")");
-		temp = interpolateTest.graphToBmp(new Point2D(-1, -1));
+		interpolateTest.graphToBmp(-1, -1);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
 		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 								Double.toString(temp.getY()) + ")");
 	}
@@ -119,5 +147,9 @@ public class GraphView extends View {
 	private void testEquation(Equation eq) {
 		System.out.println("Inside testEquation");
 		System.out.println(eq.toString());
+	}
+	
+	private void testGrid(Grid g) {
+		System.out.println(g.toString());
 	}
 }

@@ -40,30 +40,36 @@ public class GraphInterpolate extends GraphObjectBase {
 		this.offsetY = offsetY;
 	}
 	
-	public Point2D graphToBmp(Point2D p) {
-		double bmpX = 0;
-		double bmpY = 0;
-		if(this.bmp != null) {
-			bmpX = (double)this.bmp.getWidth();
-			bmpY = (double)this.bmp.getHeight();
-		}
+	public void graphToBmp(double x, double y) {
+		double bmpX;
+		double bmpY;
+		bmpX = (double)this.bmp.getWidth();
+		bmpY = (double)this.bmp.getHeight();
 		// If x, y offsets are 0, 0, then origin of graph is center of bitmap.
-		q.setX((bmpX / 2.0) + (p.getX() - this.offsetX) * this.sizeRatio);
-		q.setY((bmpY / 2.0) - (p.getY() - this.offsetY) * this.sizeRatio);
-		return this.q;
+		System.out.println("Inside graphToBmp");
+		System.out.println(Double.toString(x) + ", " + Double.toString(y));
+		q.setX((bmpX / 2.0) + (x - this.offsetX) * this.sizeRatio);
+		q.setY((bmpY / 2.0) - (y - this.offsetY) * this.sizeRatio);
+		System.out.println(Double.toString(q.getX()) + ", " + Double.toString(q.getY()));
+		System.out.println("Leaving graphToBmp");
 	}
 	
-	public Point2D bmpToGraph(Point2D p) {
-		double bmpX = 0;
-		double bmpY = 0;
-		if(this.bmp != null) {
-			bmpX = (double)this.bmp.getWidth();
-			bmpY = (double)this.bmp.getWidth();
-		}
+	public void bmpToGraph(double x, double y) {
+		double bmpX;
+		double bmpY;
+		bmpX = (double)this.bmp.getWidth();
+		bmpY = (double)this.bmp.getWidth();
 		// This function is not done yet!
 		// If x, y offsets are 0, 0, then origin of graph is center of bitmap.
-		q.setX((p.getX() - (bmpX / 2.0)) / this.sizeRatio + this.offsetX);
-		q.setY((p.getY() - (bmpY / 2.0)) / this.sizeRatio + this.offsetY);
-		return this.q;
+		q.setX((x - (bmpX / 2.0)) / this.sizeRatio + this.offsetX);
+		q.setY((y - (bmpY / 2.0)) / this.sizeRatio + this.offsetY);
+	}
+	
+	public double getInterpX() {
+		return q.getX();
+	}
+
+	public double getInterpY() {
+		return q.getY();
 	}
 }
