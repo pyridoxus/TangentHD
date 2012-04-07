@@ -7,6 +7,11 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 
+// This project is a good example of needing to plan ahead. There are some
+// bad (or at least less efficient or messy) ways of setting up objects in
+// both this View and the activity associated with it. I suspect there is a
+// much better way to set up objects. First, I must better understand the way
+// the Android objects are set up, when things occur, what objects exist, etc.
 public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
 	Bitmap fg = null;	// Foreground bitmap holds more dynamic image of secants
@@ -110,15 +115,20 @@ public class GraphView extends View {
 //			testGrid(grid);
 			testSecant(leftSecant);
 			testSecant(rightSecant);
+			System.out.println("Initializing everything in draw...");
 		}
 		if(fullRedraw == true) {
 			grid.draw(canvas);
 			theEquation.draw(canvas);
 			fullRedraw = false;
+			System.out.println("Full redraw in draw...");
 		}
+		grid.draw(canvas);
+		theEquation.draw(canvas);
 		fg = bg.copy(bg.getConfig(), true);
 		leftSecant.draw(canvas);
 		rightSecant.draw(canvas);
+		System.out.println("Regular draw...");
 	}
 	
 	@Override
@@ -143,7 +153,8 @@ public class GraphView extends View {
 	private void createBMPs() {
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
-		fg = Bitmap.createBitmap(bg);
+		fg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
+				Bitmap.Config.ARGB_8888);
 	}
 	
 	private void init() {
@@ -211,14 +222,14 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				0, gAttr.getSecantMid(currentEq), gAttr.getStepX(currentEq));
 		leftSecant.setColor(Color.MAGENTA);
-		leftSecant.setBmp(bg);
+		leftSecant.setBmp(fg);
 
 		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
 				gAttr.getStepX(currentEq));
 		rightSecant.setColor(Color.RED);
-		rightSecant.setBmp(bg);
+		rightSecant.setBmp(fg);
 		presetSecants();
 		fullRedraw = true;
 		this.invalidate();
