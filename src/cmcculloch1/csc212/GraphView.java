@@ -14,7 +14,6 @@ import android.view.View;
 // the Android objects are set up, when things occur, what objects exist, etc.
 public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
-	Bitmap fg = null;	// Foreground bitmap holds more dynamic image of secants
 	GraphAttributes gAttr;	// Attributes of the 3 equations
 	PowerEq powerEq = null;			// y = x^3
 	ParabolaEq parabolaEq = null;	// y = |x^2 - 1|
@@ -105,8 +104,8 @@ public class GraphView extends View {
 			parabolaEq.setBmp(bg);
 			astroidEq.setBmp(bg);
 			grid.setBmp(bg);
-			leftSecant.setBmp(fg);
-			rightSecant.setBmp(fg);
+			leftSecant.setBmp(bg);
+			rightSecant.setBmp(bg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -125,7 +124,6 @@ public class GraphView extends View {
 		}
 		grid.draw(canvas);
 		theEquation.draw(canvas);
-		fg = bg.copy(bg.getConfig(), true);
 		leftSecant.draw(canvas);
 		rightSecant.draw(canvas);
 		System.out.println("Regular draw...");
@@ -153,8 +151,6 @@ public class GraphView extends View {
 	private void createBMPs() {
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
-		fg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
-				Bitmap.Config.ARGB_8888);
 	}
 	
 	private void init() {
@@ -222,14 +218,14 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				0, gAttr.getSecantMid(currentEq), gAttr.getStepX(currentEq));
 		leftSecant.setColor(Color.MAGENTA);
-		leftSecant.setBmp(fg);
+		leftSecant.setBmp(bg);
 
 		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
 				gAttr.getStepX(currentEq));
 		rightSecant.setColor(Color.RED);
-		rightSecant.setBmp(fg);
+		rightSecant.setBmp(bg);
 		presetSecants();
 		fullRedraw = true;
 		this.invalidate();
