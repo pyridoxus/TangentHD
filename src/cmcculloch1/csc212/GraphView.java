@@ -39,10 +39,11 @@ public class GraphView extends View {
 		init();
 	}
 
-	public void setAttributes(GraphAttributes gAttr) {
+	public Point2D setAttributes(GraphAttributes gAttr) {
 		System.out.println("Inside setAttributes()");
 		this.gAttr = gAttr;
 		buildGraphObjects();
+		return getSecantRanges();
 	}
 	
 	private void buildGraphObjects() {
@@ -221,11 +222,25 @@ public class GraphView extends View {
 		presetSecants();
 		fullRedraw = true;
 		this.invalidate();
+		return getSecantRanges();
+	}
+	
+	public Point2D getSecantRanges() {
 		return new Point2D(leftSecant.getEndX(),
 				rightSecant.getEndX() - rightSecant.getStartX());
 	}
 	
 	public void setLeftSecant(int progress) {
-		
+		int idx = (int)leftSecant.getStartX() + progress;
+		if(idx < 0) idx = 0;
+		leftSecant.setP(theEquation.getData(progress));
+		this.invalidate();
+	}
+
+	public void setRightSecant(int progress) {
+		int idx = (int)rightSecant.getStartX() + progress;
+		if(idx >= rightSecant.getEndX()) idx = (int)rightSecant.getEndX() - 1;
+		rightSecant.setQ(theEquation.getData(idx));
+		this.invalidate();
 	}
 }

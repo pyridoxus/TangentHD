@@ -22,10 +22,13 @@ public class TangentHDActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         graph = (GraphView) findViewById(R.id.graphView);
-        graph.setAttributes((GraphAttributes)findViewById(R.id.graphAttributes));
+        Point2D p = new Point2D(graph.setAttributes(
+        				(GraphAttributes)findViewById(R.id.graphAttributes)));
+        int leftSeekBarRange = (int)p.getX();
+        int rightSeekBarRange = (int)p.getY();
         registerForContextMenu(graph);
-        setupLeftSeekBar();
-        setupRightSeekBar();
+        setupLeftSeekBar(leftSeekBarRange);
+        setupRightSeekBar(rightSeekBarRange);
     }
     
     @Override
@@ -105,19 +108,25 @@ public class TangentHDActivity extends Activity {
             default:
                 return super.onContextItemSelected(item);
         }
-        graph.setEquation(param);
+        setSeekBarRanges(graph.setEquation(param));
         toast.show();
         return true;
     }
     
-    private void setupLeftSeekBar() {
+    private void setSeekBarRanges(Point2D p) {
+    	leftSeekBar.setMax((int)p.getX());
+    	rightSeekBar.setMax((int)p.getY());
+    }
+    
+    private void setupLeftSeekBar(int leftSeekBarRange) {
     	leftSeekBar = (SeekBar)findViewById(R.id.seekBar1);
+    	leftSeekBar.setMax(leftSeekBarRange);
         leftSeekBar.setOnSeekBarChangeListener(
         				new SeekBar.OnSeekBarChangeListener() {
         	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
-        		TangentHDActivity.leftSeekBarCB(R.id.seekBar1, progress);        		
+        		leftSeekBarCB(R.id.seekBar1, progress);        		
         	}
 
         	@Override
@@ -134,19 +143,21 @@ public class TangentHDActivity extends Activity {
         });
     }
     
-    private static void leftSeekBarCB(int ID, int progress) {
+    private void leftSeekBarCB(int ID, int progress) {
+    	graph.setLeftSecant(progress);
     	System.out.println("Left Seekbar: " + Integer.toString(ID) +
     						" progress: " + progress);
     }
 
-    private void setupRightSeekBar() {
+    private void setupRightSeekBar(int rightSeekBarRange) {
     	rightSeekBar = (SeekBar)findViewById(R.id.seekBar2);
+    	rightSeekBar.setMax(rightSeekBarRange);
     	rightSeekBar.setOnSeekBarChangeListener(
         				new SeekBar.OnSeekBarChangeListener() {
         	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
-        		TangentHDActivity.rightSeekBarCB(R.id.seekBar2, progress);        		
+        		rightSeekBarCB(R.id.seekBar2, progress);        		
         	}
 
         	@Override
@@ -163,7 +174,8 @@ public class TangentHDActivity extends Activity {
         });
     }
     
-    private static void rightSeekBarCB(int ID, int progress) {
+    private void rightSeekBarCB(int ID, int progress) {
+    	graph.setRightSecant(progress);
     	System.out.println("Right Seekbar: " + Integer.toString(ID) +
     						" progress: " + progress);
     }
