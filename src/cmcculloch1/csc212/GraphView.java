@@ -196,7 +196,8 @@ public class GraphView extends View {
 		}
 	}
 
-	public void setEquation(int eq) {
+	// return the seekbar ranges in a Point2D
+	public Point2D setEquation(int eq) {
 		currentEq = eq;
 		setInternalEquation();
 		// Need to build new grid to the size and offset of equation
@@ -220,5 +221,11 @@ public class GraphView extends View {
 		presetSecants();
 		fullRedraw = true;
 		this.invalidate();
+		return new Point2D(leftSecant.getEndX(),
+				rightSecant.getEndX() - rightSecant.getStartX());
+	}
+	
+	public void setLeftSecant(int progress) {
+		
 	}
 }
