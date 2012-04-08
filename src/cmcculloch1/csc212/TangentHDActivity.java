@@ -115,7 +115,9 @@ public class TangentHDActivity extends Activity {
     
     private void setSeekBarRanges(Point2D p) {
     	leftSeekBar.setMax((int)p.getX());
+    	leftSeekBar.setProgress(0);
     	rightSeekBar.setMax((int)p.getY());
+    	rightSeekBar.setProgress((int)p.getY());
     }
     
     private void setupLeftSeekBar(int leftSeekBarRange) {
