@@ -102,7 +102,7 @@ public class Secant extends GraphInterpolate{
 		this.b = y1 - this.m * x1;
 
 		// Redo the coordinates so that the secant is a larger line segment...
-		x1 = -10.0; // Large enough for now, will add to resource later
+		x1 = -10.0; //TODO: Large enough for now, will add to resource later
 		y1 = this.m * x1 + this.b;
 		x2 = 10.0;
 		y2 = this.m * x2 + this.b;

@@ -22,6 +22,8 @@ public class GraphView extends View {
 	Grid grid = null;				// The background grid
 	Secant leftSecant = null;		// Secant left of point of interest
 	Secant rightSecant = null;		// Secant right of point of interest
+	GraphPoint leftPoint = null;	// Point left of point of interest
+	GraphPoint rightPoint = null;	// Point right of point of interest
 	int currentEq = 0;				// Index of current equation
 	boolean fullRedraw = true;		// If true, do full redraw, else do partial
 	
@@ -78,6 +80,13 @@ public class GraphView extends View {
 				gAttr.getStepX(currentEq));
 		rightSecant.setColor(Color.RED);
 		presetSecants();
+		leftPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		leftPoint.setColor(Color.MAGENTA);
+		rightPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		rightPoint.setColor(Color.RED);
+		presetPoints();
 	}
 	
 	private void presetSecants() {
@@ -90,6 +99,12 @@ public class GraphView extends View {
 		leftSecant.setQ(theEquation.getData(idx));
 		rightSecant.setP(theEquation.getData(idx));
 		rightSecant.setQ(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
+	}
+	
+	private void presetPoints() {
+		int idx = 0;
+		leftPoint.setP(theEquation.getData(idx));
+		rightPoint.setP(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
 	}
 	
 	@Override
@@ -106,6 +121,8 @@ public class GraphView extends View {
 			grid.setBmp(bg);
 			leftSecant.setBmp(bg);
 			rightSecant.setBmp(bg);
+			leftPoint.setBmp(bg);
+			rightPoint.setBmp(bg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -126,6 +143,8 @@ public class GraphView extends View {
 		theEquation.draw(canvas);
 		leftSecant.draw(canvas);
 		rightSecant.draw(canvas);
+		leftPoint.draw(canvas);
+		rightPoint.draw(canvas);
 		System.out.println("Regular draw...");
 	}
 	
@@ -227,6 +246,18 @@ public class GraphView extends View {
 		rightSecant.setColor(Color.RED);
 		rightSecant.setBmp(bg);
 		presetSecants();
+
+		leftPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		leftPoint.setColor(Color.MAGENTA);
+		leftPoint.setBmp(bg);
+
+		rightPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		rightPoint.setColor(Color.RED);
+		rightPoint.setBmp(bg);
+
+		presetPoints();
 		fullRedraw = true;
 		this.invalidate();
 		return getSecantRanges();
@@ -241,6 +272,8 @@ public class GraphView extends View {
 		int idx = (int)leftSecant.getStartX() + progress;
 		if(idx < 0) idx = 0;
 		leftSecant.setP(theEquation.getData(progress));
+		// Set the left point while we are here...
+		leftPoint.setP(theEquation.getData(progress));
 		this.invalidate();
 	}
 
@@ -248,6 +281,8 @@ public class GraphView extends View {
 		int idx = (int)rightSecant.getStartX() + progress;
 		if(idx >= rightSecant.getEndX()) idx = (int)rightSecant.getEndX() - 1;
 		rightSecant.setQ(theEquation.getData(idx));
+		// Set the right point while we are here...
+		rightPoint.setP(theEquation.getData(idx));
 		this.invalidate();
 	}
 }
