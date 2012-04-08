@@ -91,14 +91,31 @@ public class Secant extends GraphInterpolate{
 	public void draw(Canvas canvas) {
 		Point2D s = new Point2D(0, 0);
 		Point2D t = new Point2D(0, 0);
-		graphToBmp(p.getX(), p.getY());
+		double x1, x2, y1, y2;
+		x1 = p.getX();
+		y1 = p.getY();
+		x2 = q.getX();
+		y2 = q.getY();
+		if(x1 == x2){
+			this.m = 1e+50;	// Make slope large enough that it won't matter
+		} else this.m = (y1 - y2) / (x1 - x2);
+		this.b = y1 - this.m * x1;
+
+		// Redo the coordinates so that the secant is a larger line segment...
+		x1 = -10.0; // Large enough for now, will add to resource later
+		y1 = this.m * x1 + this.b;
+		x2 = 10.0;
+		y2 = this.m * x2 + this.b;
+
+		graphToBmp(x1, y1);
 		s.setX(getInterpX());
 		s.setY(getInterpY());
-		graphToBmp(q.getX(), q.getY());
+		graphToBmp(x2, y2);
 		t.setX(getInterpX());
 		t.setY(getInterpY());
+		
 		canvas.drawLine((float)s.getX(), (float)s.getY(),
-					(float)t.getX(), (float)t.getY(), paint);
+				(float)t.getX(), (float)t.getY(), paint);
 	}
 
 	@Override
