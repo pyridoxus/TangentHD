@@ -10,18 +10,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TangentHDActivity extends Activity {
 	private GraphView graph;
 	private SeekBar leftSeekBar;
 	private SeekBar rightSeekBar;
+	private TextView equationName;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         graph = (GraphView) findViewById(R.id.graphView);
+        equationName = (TextView) findViewById(R.id.textView3);
         Point2D p = new Point2D(graph.setAttributes(
         				(GraphAttributes)findViewById(R.id.graphAttributes)));
         int leftSeekBarRange = (int)p.getX();
@@ -81,6 +85,7 @@ public class TangentHDActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Context context = getApplicationContext();
+        String name;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context,
     			getString(R.string.app_name), duration);
@@ -89,18 +94,21 @@ public class TangentHDActivity extends Activity {
 
         switch (m_id) {
             case R.id.equation1:
-            	toast = Toast.makeText(context,
-            			getString(R.string.equation1), duration);
+            	name = getString(R.string.equation1);
+            	toast = Toast.makeText(context, name, duration);
+                equationName.setText(name);
             	param = 0; // I don't like doing this, but work around it later
             break;
             case R.id.equation2:
-            	toast = Toast.makeText(context,
-            			getString(R.string.equation2), duration);
+            	name = getString(R.string.equation2);
+            	toast = Toast.makeText(context, name, duration);
+                equationName.setText(name);
             	param = 1;
             break;
             case R.id.equation3:
-            	toast = Toast.makeText(context,
-            			getString(R.string.equation3), duration);
+            	name = getString(R.string.equation3);
+            	toast = Toast.makeText(context, name, duration);
+                equationName.setText(name);
             	param = 2;
             break;
             case R.id.equation_exit:
