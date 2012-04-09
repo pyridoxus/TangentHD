@@ -88,7 +88,7 @@ public class Secant extends GraphInterpolate{
 		this.paint.setColor(color);
 	}
 	
-	public void draw(Canvas canvas) {
+	public void draw(Canvas canvas, boolean left) {
 		Point2D s = new Point2D(0, 0);
 		Point2D t = new Point2D(0, 0);
 		double x1, x2, y1, y2;
@@ -102,10 +102,19 @@ public class Secant extends GraphInterpolate{
 		this.b = y1 - this.m * x1;
 
 		// Redo the coordinates so that the secant is a larger line segment...
-		x1 = -10.0; //TODO: Large enough for now, will add to resource later
-		y1 = this.m * x1 + this.b;
-		x2 = 10.0;
-		y2 = this.m * x2 + this.b;
+		if(left == true) {
+			x1 = -10.0; //TODO: Large enough for now, will add to resource later
+			y1 = this.m * x1 + this.b;
+		}
+		else {
+//	The following lines will make a line connecting through point of interest
+//	if this if-else block is removed and applies to both end points.
+			x1 = 10.0;
+			y1 = this.m * x1 + this.b;
+		}
+//	The following lines will make a line segment ending at point of interest
+		x2 = q.getX();
+		y2 = q.getY();
 
 		graphToBmp(x1, y1);
 		s.setX(getInterpX());

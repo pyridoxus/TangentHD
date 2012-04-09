@@ -20,8 +20,8 @@ public class GraphView extends View {
 	AstroidEq astroidEq = null;		// x^(2/3) + y^(2/3) = 1
 	Equation theEquation = null;	// The current equation object
 	Grid grid = null;				// The background grid
-	Secant leftSecant = null;		// Secant left of point of interest
-	Secant rightSecant = null;		// Secant right of point of interest
+	LeftSecant leftSecant = null;		// Secant left of point of interest
+	RightSecant rightSecant = null;		// Secant right of point of interest
 	GraphPoint leftPoint = null;	// Point left of point of interest
 	GraphPoint rightPoint = null;	// Point right of point of interest
 	GraphPoint centerPoint = null;	// Point of interest
@@ -70,12 +70,12 @@ public class GraphView extends View {
 		setInternalEquation();
 		grid = new Grid(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
-		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
+		leftSecant = new LeftSecant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				0, gAttr.getSecantMid(currentEq),
 				gAttr.getStepX(currentEq));
 		leftSecant.setColor(Color.MAGENTA);
-		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
+		rightSecant = new RightSecant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
 				gAttr.getStepX(currentEq));
@@ -99,10 +99,10 @@ public class GraphView extends View {
 		// everything.
 		int idx = 0;
 		leftSecant.setP(theEquation.getData(idx));
+		rightSecant.setP(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
 		idx = gAttr.getSecantMid(currentEq);
 		leftSecant.setQ(theEquation.getData(idx));
-		rightSecant.setP(theEquation.getData(idx));
-		rightSecant.setQ(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
+		rightSecant.setQ(theEquation.getData(idx));
 	}
 	
 	private void presetPoints() {
@@ -240,13 +240,13 @@ public class GraphView extends View {
 				gAttr.getOffsetY(currentEq));
 		grid.setBmp(bg);
 
-		leftSecant = new Secant(gAttr.getSizeRatio(currentEq),
+		leftSecant = new LeftSecant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				0, gAttr.getSecantMid(currentEq), gAttr.getStepX(currentEq));
 		leftSecant.setColor(Color.MAGENTA);
 		leftSecant.setBmp(bg);
 
-		rightSecant = new Secant(gAttr.getSizeRatio(currentEq),
+		rightSecant = new RightSecant(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
 				gAttr.getSecantMid(currentEq), gAttr.getSecantEnd(currentEq),
 				gAttr.getStepX(currentEq));
@@ -292,7 +292,7 @@ public class GraphView extends View {
 	public void setRightSecant(int progress) {
 		int idx = (int)rightSecant.getStartX() + progress;
 		if(idx >= rightSecant.getEndX()) idx = (int)rightSecant.getEndX() - 1;
-		rightSecant.setQ(theEquation.getData(idx));
+		rightSecant.setP(theEquation.getData(idx));
 		// Set the right point while we are here...
 		rightPoint.setP(theEquation.getData(idx));
 		this.invalidate();
