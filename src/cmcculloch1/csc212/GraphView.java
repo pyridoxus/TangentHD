@@ -24,6 +24,7 @@ public class GraphView extends View {
 	Secant rightSecant = null;		// Secant right of point of interest
 	GraphPoint leftPoint = null;	// Point left of point of interest
 	GraphPoint rightPoint = null;	// Point right of point of interest
+	GraphPoint centerPoint = null;	// Point of interest
 	int currentEq = 0;				// Index of current equation
 	boolean fullRedraw = true;		// If true, do full redraw, else do partial
 	
@@ -86,6 +87,9 @@ public class GraphView extends View {
 		rightPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
 		rightPoint.setColor(Color.RED);
+		centerPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		centerPoint.setColor(Color.GREEN);
 		presetPoints();
 	}
 	
@@ -105,6 +109,7 @@ public class GraphView extends View {
 		int idx = 0;
 		leftPoint.setP(theEquation.getData(idx));
 		rightPoint.setP(theEquation.getData(gAttr.getSecantEnd(currentEq) - 1));
+		centerPoint.setP(theEquation.getData(gAttr.getSecantMid(currentEq)));
 	}
 	
 	@Override
@@ -123,6 +128,7 @@ public class GraphView extends View {
 			rightSecant.setBmp(bg);
 			leftPoint.setBmp(bg);
 			rightPoint.setBmp(bg);
+			centerPoint.setBmp(bg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -145,6 +151,7 @@ public class GraphView extends View {
 		rightSecant.draw(canvas);
 		leftPoint.draw(canvas);
 		rightPoint.draw(canvas);
+		centerPoint.draw(canvas);
 		System.out.println("Regular draw...");
 	}
 	
@@ -256,6 +263,11 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
 		rightPoint.setColor(Color.RED);
 		rightPoint.setBmp(bg);
+
+		centerPoint = new GraphPoint(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
+		centerPoint.setColor(Color.GREEN);
+		centerPoint.setBmp(bg);
 
 		presetPoints();
 		fullRedraw = true;
