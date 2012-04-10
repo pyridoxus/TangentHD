@@ -20,6 +20,10 @@ public class GraphAttributes extends View {
 	private int[] seekRightEnd = new int[3];
 	private int[] secantMid = new int[3];
 	private int[] secantEnd = new int[3];
+	private float[] leftSlope = new float[3];
+	private float[] leftOffset = new float[3];
+	private float[] rightSlope = new float[3];
+	private float[] rightOffset = new float[3];
 	
 	public GraphAttributes(Context context) {
 		super(context);
@@ -90,6 +94,38 @@ public class GraphAttributes extends View {
 		return this.secantEnd[idx];
 	}
 	
+	public float getLeftSlope(int idx) {
+		return leftSlope[idx];
+	}
+
+	public void setLeftSlope(float[] leftSlope) {
+		this.leftSlope = leftSlope;
+	}
+
+	public float getLeftOffset(int idx) {
+		return leftOffset[idx];
+	}
+
+	public void setLeftOffset(float[] leftOffset) {
+		this.leftOffset = leftOffset;
+	}
+
+	public float getRightSlope(int idx) {
+		return rightSlope[idx];
+	}
+
+	public void setRightSlope(float[] rightSlope) {
+		this.rightSlope = rightSlope;
+	}
+
+	public float getRightOffset(int idx) {
+		return rightOffset[idx];
+	}
+
+	public void setRightOffset(float[] rightOffset) {
+		this.rightOffset = rightOffset;
+	}
+
 	private void init_res(Context context, AttributeSet attrs) {
 		TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.GraphAttributes);
@@ -121,6 +157,14 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_secantMid1));
 		secantEnd[0] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_secantEnd1));
+		leftSlope[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftSlope1));
+		leftOffset[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftOffset1));
+		rightSlope[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightSlope1));
+		rightOffset[0] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightOffset1));
         
 		// Second equation (y = | x ^ 2 - 1 |)
 		sizeRatio[1] = Float.parseFloat(
@@ -148,6 +192,14 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_secantMid2));
 		secantEnd[1] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_secantEnd2));
+		leftSlope[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftSlope2));
+		leftOffset[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftOffset2));
+		rightSlope[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightSlope2));
+		rightOffset[1] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightOffset2));
         
 		// Third equation (x ^ (2/3) + y ^ (2/3) = 1)
 		sizeRatio[2] = Float.parseFloat(
@@ -175,6 +227,14 @@ public class GraphAttributes extends View {
 				a.getString(R.styleable.GraphAttributes_secantMid3));
 		secantEnd[2] = Integer.parseInt(
 				a.getString(R.styleable.GraphAttributes_secantEnd3));
+		leftSlope[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftSlope3));
+		leftOffset[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_leftOffset3));
+		rightSlope[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightSlope3));
+		rightOffset[2] = Float.parseFloat(
+				a.getString(R.styleable.GraphAttributes_rightOffset3));
         
         a.recycle();
 	}

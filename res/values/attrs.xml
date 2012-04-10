@@ -14,7 +14,11 @@
 		<attr name="seekRightEnd1" format="integer" />
 		<attr name="secantMid1" format="integer" />
 		<attr name="secantEnd1" format="integer" />
-				
+		<attr name="leftSlope1" format="float" />
+		<attr name="leftOffset1" format="float" />
+		<attr name="rightSlope1" format="float" />
+		<attr name="rightOffset1" format="float" />
+								
 		<attr name="sizeRatio2" format="float" />
 		<attr name="offsetX2" format="float" />
 		<attr name="offsetY2" format="float" />
@@ -28,7 +32,11 @@
 		<attr name="seekRightEnd2" format="integer" />
 		<attr name="secantMid2" format="integer" />
 		<attr name="secantEnd2" format="integer" />
-		
+		<attr name="leftSlope2" format="float" />
+		<attr name="leftOffset2" format="float" />
+		<attr name="rightSlope2" format="float" />
+		<attr name="rightOffset2" format="float" />
+				
 		<attr name="sizeRatio3" format="float" />
 		<attr name="offsetX3" format="float" />
 		<attr name="offsetY3" format="float" />
@@ -42,5 +50,9 @@
 		<attr name="seekRightEnd3" format="integer" />
 		<attr name="secantMid3" format="integer" />
 		<attr name="secantEnd3" format="integer" />
-	</declare-styleable>
+		<attr name="leftSlope3" format="float" />
+		<attr name="leftOffset3" format="float" />
+		<attr name="rightSlope3" format="float" />
+		<attr name="rightOffset3" format="float" />
+		</declare-styleable>
 </resources>

@@ -64,7 +64,7 @@
         android:progress="100"
         android:progressDrawable="@color/red" />
 
-    <cmcculloch1.csc212.GraphAttributes
+	<cmcculloch1.csc212.GraphAttributes
 		android:id="@+id/graphAttributes"
         android:layout_width="1dp"
         android:layout_height="1dp"
@@ -82,6 +82,10 @@
 		TangentHD:seekRightEnd1="160"
 		TangentHD:secantMid1="80"
 		TangentHD:secantEnd1="160"
+		TangentHD:leftSlope1="0.0"
+		TangentHD:leftOffset1="0.0"
+		TangentHD:rightSlope1="0.0"
+		TangentHD:rightOffset1="0.0"
 		
 		TangentHD:sizeRatio2="80.0"
 		TangentHD:offsetX2="0.0"
@@ -96,6 +100,10 @@
 		TangentHD:seekRightEnd2="240"
 		TangentHD:secantMid2="70"
 		TangentHD:secantEnd2="240"
+		TangentHD:leftSlope2="-2.0"
+		TangentHD:leftOffset2="-2.0"
+		TangentHD:rightSlope2="2.0"
+		TangentHD:rightOffset2="2.0"
 		
 		TangentHD:sizeRatio3="160.0"
 		TangentHD:offsetX3="0.0"
@@ -110,6 +118,10 @@
 		TangentHD:seekRightEnd3="100"
 		TangentHD:secantMid3="50"
 		TangentHD:secantEnd3="100"
+		TangentHD:leftSlope3="1e+50"
+		TangentHD:leftOffset3="0.0"
+		TangentHD:rightSlope3="1e+50"
+		TangentHD:rightOffset3="0.0"
 		
 	/>
 

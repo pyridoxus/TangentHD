@@ -25,6 +25,7 @@ public class GraphView extends View {
 	GraphPoint leftPoint = null;	// Point left of point of interest
 	GraphPoint rightPoint = null;	// Point right of point of interest
 	GraphPoint centerPoint = null;	// Point of interest
+	TangentResolver tangent = null;	// Graph the secant lines at limit
 	int currentEq = 0;				// Index of current equation
 	boolean fullRedraw = true;		// If true, do full redraw, else do partial
 	
@@ -91,6 +92,11 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
 		centerPoint.setColor(Color.GREEN);
 		presetPoints();
+
+		tangent = new TangentResolver(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getSecantMid(currentEq));
+		presetTangent();
 	}
 	
 	private void presetSecants() {
@@ -112,6 +118,13 @@ public class GraphView extends View {
 		centerPoint.setP(theEquation.getData(gAttr.getSecantMid(currentEq)));
 	}
 	
+	private void presetTangent() {
+		tangent.setLeftOffset(gAttr.getLeftOffset(currentEq));
+		tangent.setLeftSlope(gAttr.getLeftSlope(currentEq));
+		tangent.setRightOffset(gAttr.getRightOffset(currentEq));
+		tangent.setRightSlope(gAttr.getRightSlope(currentEq));
+	}
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
@@ -129,6 +142,7 @@ public class GraphView extends View {
 			leftPoint.setBmp(bg);
 			rightPoint.setBmp(bg);
 			centerPoint.setBmp(bg);
+			tangent.setBmp(bg);
 			setInternalEquation();
 //			testInterpolation();
 //			testEquation(powerEq);
@@ -152,6 +166,7 @@ public class GraphView extends View {
 		leftPoint.draw(canvas);
 		rightPoint.draw(canvas);
 		centerPoint.draw(canvas);
+		tangent.draw(canvas);
 		System.out.println("Regular draw...");
 	}
 	
@@ -268,8 +283,14 @@ public class GraphView extends View {
 				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq));
 		centerPoint.setColor(Color.GREEN);
 		centerPoint.setBmp(bg);
-
 		presetPoints();
+		
+		tangent = new TangentResolver(gAttr.getSizeRatio(currentEq),
+				gAttr.getOffsetX(currentEq), gAttr.getOffsetY(currentEq),
+				gAttr.getSecantMid(currentEq));
+		tangent.setBmp(bg);
+		presetTangent();
+		
 		fullRedraw = true;
 		this.invalidate();
 		return getSecantRanges();
