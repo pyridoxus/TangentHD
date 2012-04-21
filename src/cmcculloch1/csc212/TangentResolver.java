@@ -5,12 +5,10 @@ import android.graphics.Color;
 import android.graphics.Paint.Style;
 
 public class TangentResolver extends GraphInterpolate {
-	private double mid, leftSlope, leftOffset, rightSlope, rightOffset;
+	private double leftSlope, leftOffset, rightSlope, rightOffset;
 	
-	public TangentResolver(double sizeRatio, double offsetX, double offsetY,
-							double mid) {
+	public TangentResolver(double sizeRatio, double offsetX, double offsetY) {
 		super(sizeRatio, offsetX, offsetY);
-		this.mid = mid;
 		this.paint.setStrokeWidth(2);
 		this.paint.setStyle(Style.STROKE);
 		this.paint.setColor(Color.BLACK);
