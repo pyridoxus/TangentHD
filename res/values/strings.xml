@@ -15,6 +15,20 @@
 	<string name="s_leftColor">Left secant color here…</string>
 	<string name="s_rightColor">Right secant color here…</string>
 	<string name="exit">Exit</string>
-			
+	<string name="chooseColor">Choose Color</string>
+	<string name="buttonOk">Ok</string>
+	<string name="buttonCancel">Cancel</string>
+    <string-array name="color_array">
+        <item>magenta</item>
+        <item>red</item>
+        <item>orange</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>cyan</item>
+        <item>blue</item>
+        <item>violet</item>
+        <item>black</item>
+    </string-array>
+
 	
 </resources>

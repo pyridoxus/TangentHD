@@ -2,6 +2,7 @@ package cmcculloch1.csc212;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -60,18 +61,21 @@ public class TangentHDActivity extends Activity {
 
         switch (m_id) {
             case R.id.m_graphColor:
+            	getColor();
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_graphColor), duration);
                 toast.show();
                 return true;
             case R.id.m_leftColor:
+            	getColor();
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_leftColor), duration);
                 toast.show();
                 return true;
             case R.id.m_rightColor:
+            	getColor();
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_rightColor), duration);
@@ -190,4 +194,11 @@ public class TangentHDActivity extends Activity {
     						" progress: " + progress);
     }
 
+    private void getColor() {
+    	// Create an intent to start an Activity
+        Intent intent = new Intent(getApplicationContext(),
+               ColorChooseActivity.class);
+        // Make the intent request
+        startActivity(intent);    	
+    }
 }
