@@ -15,7 +15,7 @@ public class Grid extends GraphInterpolate {
 	public void draw(Canvas canvas) {
 		paint.setColor(Color.WHITE);
 		canvas.drawPaint(paint);
-		System.out.println("Drawing grid...");
+//		System.out.println("Drawing grid...");
 		
 		borderE = (float)(bmp.getWidth() / 2.0 / sizeRatio + offsetX);
 		float temp = borderE % 1;
@@ -25,7 +25,7 @@ public class Grid extends GraphInterpolate {
 		temp = borderN % 1;
 		borderN = borderN - temp + 1;
 		borderS = -borderN;
-		paint.setColor(Color.BLACK);
+		paint.setColor(Color.LTGRAY);
 		drawX(canvas);
 		drawY(canvas);
 	}

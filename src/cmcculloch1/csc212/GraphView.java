@@ -48,7 +48,7 @@ public class GraphView extends View {
 	}
 
 	public Point2D setAttributes(GraphAttributes gAttr) {
-		System.out.println("Inside setAttributes()");
+//		System.out.println("Inside setAttributes()");
 		this.gAttr = gAttr;
 		buildGraphObjects();
 		return getSecantRanges();
@@ -58,7 +58,7 @@ public class GraphView extends View {
 		// This can be done any time, because it does not rely on the
 		// existence of the bitmaps. This is done just after we get the
 		// attributes inflated.
-		System.out.println("Inside buildGraphObjects()");
+//		System.out.println("Inside buildGraphObjects()");
 		powerEq = new PowerEq(gAttr.getSizeRatio(0), gAttr.getOffsetX(0),
 				gAttr.getOffsetY(0), gAttr.getStartX(0), gAttr.getEndX(0),
 							gAttr.getStepX(0), gAttr.getName(0));
@@ -122,6 +122,9 @@ public class GraphView extends View {
 		tangent.setLeftSlope(gAttr.getLeftSlope(currentEq));
 		tangent.setRightOffset(gAttr.getRightOffset(currentEq));
 		tangent.setRightSlope(gAttr.getRightSlope(currentEq));
+		tangent.setMidPoint(theEquation.getData(gAttr.getSecantMid(currentEq)));
+		tangent.setState(0);	// Clear the tangent lines
+		tangent.setEquation(currentEq);	// Some equations cause different color
 	}
 	
 	@Override
@@ -150,13 +153,13 @@ public class GraphView extends View {
 //			testGrid(grid);
 			testSecant(leftSecant);
 			testSecant(rightSecant);
-			System.out.println("Initializing everything in draw...");
+//			System.out.println("Initializing everything in draw...");
 		}
 		if(fullRedraw == true) {
 			grid.draw(canvas);
 			theEquation.draw(canvas);
 			fullRedraw = false;
-			System.out.println("Full redraw in draw...");
+//			System.out.println("Full redraw in draw...");
 		}
 		grid.draw(canvas);
 		theEquation.draw(canvas);
@@ -164,9 +167,9 @@ public class GraphView extends View {
 		rightSecant.draw(canvas);
 		leftPoint.draw(canvas);
 		rightPoint.draw(canvas);
-		centerPoint.draw(canvas);
 		tangent.draw(canvas);
-		System.out.println("Regular draw...");
+		centerPoint.draw(canvas);
+//		System.out.println("Regular draw...");
 	}
 	
 	@Override
@@ -197,39 +200,39 @@ public class GraphView extends View {
 		System.out.println("Inside init()");
 	}
 	
-//	private void testInterpolation() {
-//		GraphInterpolate interpolateTest = 
-//				new GraphInterpolate(gAttr.getSizeRatio(0),
-//									 gAttr.getOffsetX(0),
-//									 gAttr.getOffsetY(0));
-//		interpolateTest.setBmp(bg);
-//		Point2D temp = new Point2D();
+	private void testInterpolation() {
+		GraphInterpolate interpolateTest = 
+				new GraphInterpolate(gAttr.getSizeRatio(0),
+									 gAttr.getOffsetX(0),
+									 gAttr.getOffsetY(0));
+		interpolateTest.setBmp(bg);
+		Point2D temp = new Point2D();
 //		System.out.println("Printing conversions...");
-//		interpolateTest.graphToBmp(0, 0);
-//		temp.setX(interpolateTest.getInterpX());
-//		temp.setY(interpolateTest.getInterpY());
+		interpolateTest.graphToBmp(0, 0);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
 //		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 //								Double.toString(temp.getY()) + ")");
-//		interpolateTest.graphToBmp(1, 1);
-//		temp.setX(interpolateTest.getInterpX());
-//		temp.setY(interpolateTest.getInterpY());
-//		System.out.println("(" + Double.toString(temp.getX()) + ", " +
-//								Double.toString(temp.getY()) + ")");
-//		interpolateTest.graphToBmp(-1, -1);
-//		temp.setX(interpolateTest.getInterpX());
-//		temp.setY(interpolateTest.getInterpY());
-//		System.out.println("(" + Double.toString(temp.getX()) + ", " +
-//								Double.toString(temp.getY()) + ")");
-//	}
+		interpolateTest.graphToBmp(1, 1);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
+		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+								Double.toString(temp.getY()) + ")");
+		interpolateTest.graphToBmp(-1, -1);
+		temp.setX(interpolateTest.getInterpX());
+		temp.setY(interpolateTest.getInterpY());
+		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+								Double.toString(temp.getY()) + ")");
+	}
 
-//	private void testEquation(Equation eq) {
-//		System.out.println("Inside testEquation");
-//		System.out.println(eq.toString());
-//	}
+	private void testEquation(Equation eq) {
+		System.out.println("Inside testEquation");
+		System.out.println(eq.toString());
+	}
 	
-//	private void testGrid(Grid g) {
-//		System.out.println(g.toString());
-//	}
+	private void testGrid(Grid g) {
+		System.out.println(g.toString());
+	}
 	
 	private void testSecant(Secant s) {
 		System.out.println(s.toString());
@@ -305,6 +308,9 @@ public class GraphView extends View {
 		leftSecant.setP(theEquation.getData(progress));
 		// Set the left point while we are here...
 		leftPoint.setP(theEquation.getData(progress));
+		tangent.resolve();
+		if(progress == gAttr.getSecantMid(currentEq)) tangent.setState(1);
+		else tangent.clearState(1);
 		this.invalidate();
 	}
 
@@ -314,6 +320,9 @@ public class GraphView extends View {
 		rightSecant.setP(theEquation.getData(idx));
 		// Set the right point while we are here...
 		rightPoint.setP(theEquation.getData(idx));
+		tangent.resolve();
+		if(progress == 0) tangent.setState(2);
+		else tangent.clearState(2);
 		this.invalidate();
 	}
 }

@@ -159,8 +159,8 @@ public class TangentHDActivity extends Activity {
     
     private void leftSeekBarCB(int ID, int progress) {
     	graph.setLeftSecant(progress);
-    	System.out.println("Left Seekbar: " + Integer.toString(ID) +
-    						" progress: " + progress);
+//    	System.out.println("Left Seekbar: " + Integer.toString(ID) +
+//    						" progress: " + progress);
     }
 
     private void setupRightSeekBar(int rightSeekBarRange) {
@@ -190,8 +190,8 @@ public class TangentHDActivity extends Activity {
     
     private void rightSeekBarCB(int ID, int progress) {
     	graph.setRightSecant(progress);
-    	System.out.println("Right Seekbar: " + Integer.toString(ID) +
-    						" progress: " + progress);
+//    	System.out.println("Right Seekbar: " + Integer.toString(ID) +
+//    						" progress: " + progress);
     }
 
     private void getColor() {
