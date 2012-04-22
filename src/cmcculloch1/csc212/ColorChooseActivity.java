@@ -4,6 +4,7 @@ import cmcculloch1.csc212.R;
 import cmcculloch1.csc212.ColorChooseActivity.ColorOnItemSelectedListener;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,10 @@ public class ColorChooseActivity extends Activity {
 	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	            this, R.array.color_array, android.R.layout.simple_spinner_item);
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    int c = getIntent().getIntExtra(getPackageName() + ".itemColor", 0);
+	    Log.i(getClass().getSimpleName(), "Color: " + c);
 	    spinner.setAdapter(adapter);
+	    spinner.setSelection(c);
 	    spinner.setOnItemSelectedListener(new ColorOnItemSelectedListener());
 	}
 

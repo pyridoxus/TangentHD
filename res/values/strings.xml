@@ -11,9 +11,9 @@
 	<string name="equation1">y = x ^ 3</string>
 	<string name="equation2">y = |x ^ 2 – 1|</string>
 	<string name="equation3">x ^ (2 / 3) + y ^ (2 / 3) = 1</string>
-	<string name="s_graphColor">f(x) color here…</string>
-	<string name="s_leftColor">Left secant color here…</string>
-	<string name="s_rightColor">Right secant color here…</string>
+	<string name="s_graphColor">Choose f(x) color</string>
+	<string name="s_leftColor">Choose left secant color</string>
+	<string name="s_rightColor">Choose right secant color</string>
 	<string name="exit">Exit</string>
 	<string name="chooseColor">Choose Color</string>
 	<string name="buttonOk">Ok</string>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -61,21 +62,21 @@ public class TangentHDActivity extends Activity {
 
         switch (m_id) {
             case R.id.m_graphColor:
-            	getColor();
+            	getColor(graph.theEquation.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_graphColor), duration);
                 toast.show();
                 return true;
             case R.id.m_leftColor:
-            	getColor();
+            	getColor(graph.leftSecant.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_leftColor), duration);
                 toast.show();
                 return true;
             case R.id.m_rightColor:
-            	getColor();
+            	getColor(graph.rightSecant.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_rightColor), duration);
@@ -194,11 +195,12 @@ public class TangentHDActivity extends Activity {
 //    						" progress: " + progress);
     }
 
-    private void getColor() {
+    private void getColor(int c) {
     	// Create an intent to start an Activity
         Intent intent = new Intent(getApplicationContext(),
                ColorChooseActivity.class);
-        // Make the intent request
-        startActivity(intent);    	
+        Log.i(getClass().getSimpleName(), "Sending color: " + c);
+        intent.putExtra(getPackageName() + ".itemColor", c); // Make intent request
+        startActivity(intent);
     }
 }

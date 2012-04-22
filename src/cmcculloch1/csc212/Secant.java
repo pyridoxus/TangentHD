@@ -80,14 +80,6 @@ public class Secant extends GraphInterpolate{
 		return b;
 	}
 
-	public int getColor() {
-		return paint.getColor();
-	}
-
-	public void setColor(int color) {
-		this.paint.setColor(color);
-	}
-	
 	public void draw(Canvas canvas, boolean left) {
 		Point2D s = new Point2D(0, 0);
 		Point2D t = new Point2D(0, 0);

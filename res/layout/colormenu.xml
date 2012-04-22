@@ -19,19 +19,4 @@
         android:layout_marginBottom="32dp"
         android:entries="@array/color_array" />
 
-    <Button
-        android:id="@+id/buttonOk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"
-        android:text="@string/buttonOk" />
-
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/buttonCancel" />
-
 </LinearLayout>

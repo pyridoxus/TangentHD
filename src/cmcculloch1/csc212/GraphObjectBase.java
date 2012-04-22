@@ -22,4 +22,10 @@ public class GraphObjectBase {
 	public void setPaint(Paint paint) {
 		this.paint = paint;
 	}
+	public void setColor(int color) {
+		paint.setColor(color);
+	}
+	public int getColor() {
+		return paint.getColor();
+	}
 }
