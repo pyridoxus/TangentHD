@@ -122,6 +122,16 @@
 		TangentHD:leftOffset3="0.0"
 		TangentHD:rightSlope3="1e+5"
 		TangentHD:rightOffset3="0.0"
+
+    	TangentHD:magenta="#FF00FF"
+    	TangentHD:red="#FF0000"
+    	TangentHD:orange="#FF7F00"
+    	TangentHD:yellow="#FFFF00"
+    	TangentHD:green="#00FF00"
+    	TangentHD:cyan="#00FFFF"
+    	TangentHD:blue="#0000FF"
+		TangentHD:violet="#7F00FF"
+    	TangentHD:black="#000000"
 		
 	/>
 

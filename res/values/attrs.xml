@@ -54,5 +54,16 @@
 		<attr name="leftOffset3" format="float" />
 		<attr name="rightSlope3" format="float" />
 		<attr name="rightOffset3" format="float" />
-		</declare-styleable>
+		
+		<attr name="magenta" format="color" />
+		<attr name="red" format="color" />
+		<attr name="orange" format="color" />
+		<attr name="yellow" format="color" />
+		<attr name="green" format="color" />
+		<attr name="cyan" format="color" />
+		<attr name="blue" format="color" />
+		<attr name="violet" format="color" />
+		<attr name="black" format="color" />
+								
+	</declare-styleable>
 </resources>
