@@ -118,9 +118,9 @@
 		TangentHD:seekRightEnd3="100"
 		TangentHD:secantMid3="50"
 		TangentHD:secantEnd3="100"
-		TangentHD:leftSlope3="1e+50"
+		TangentHD:leftSlope3="1e+5"
 		TangentHD:leftOffset3="0.0"
-		TangentHD:rightSlope3="1e+50"
+		TangentHD:rightSlope3="1e+5"
 		TangentHD:rightOffset3="0.0"
 		
 	/>
