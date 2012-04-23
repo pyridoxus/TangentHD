@@ -26,9 +26,12 @@ public class ColorChooseActivity extends Activity {
 	            colors, list);
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    int c = getIntent().getIntExtra(getPackageName() + ".itemColor", 0);
+	    int d = 0;
+	    int e;
+	    for(e = 0; e < colors.length; e++) if(colors[e] == c) break;
 	    Log.i(getClass().getSimpleName(), "Color: " + c);
 	    spinner.setAdapter(adapter);
-	    spinner.setSelection(c);
+	    spinner.setSelection(e);
 	    spinner.setOnItemSelectedListener(new ColorOnItemSelectedListener());
 	}
 
