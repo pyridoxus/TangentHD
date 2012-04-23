@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -17,17 +18,19 @@ public class ColorChooseActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		colors = new int[10];
+		getColors();
 	    setContentView(R.layout.colormenu);
-	    getColors();
 	    Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-	    ColorArrayAdapter adapter = new ColorArrayAdapter(
-	            this, R.array.color_array, android.R.layout.simple_spinner_item,
-	            colors, list);
+	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+	    		this, R.array.color_array,
+	    		android.R.layout.simple_spinner_item);
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    int c = getIntent().getIntExtra(getPackageName() + ".itemColor", 0);
-	    Log.i(getClass().getSimpleName(), "Color: " + c);
+	    int d;
+	    for(d = 0; d < colors.length; d++) if(c == colors[d]) break;
 	    spinner.setAdapter(adapter);
-	    spinner.setSelection(c);
+	    spinner.setSelection(d);
 	    spinner.setOnItemSelectedListener(new ColorOnItemSelectedListener());
 	}
 
