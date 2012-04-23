@@ -18,6 +18,7 @@ public class ColorChooseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.colormenu);
+	    colors = new int[10];
 	    getColors();
 	    Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 	    ColorArrayAdapter adapter = new ColorArrayAdapter(
