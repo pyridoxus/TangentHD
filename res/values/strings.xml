@@ -18,7 +18,9 @@
 	<string name="chooseColor">Choose Color</string>
 	<string name="buttonOk">Ok</string>
 	<string name="buttonCancel">Cancel</string>
-    <string-array name="color_array">
+	<string name="appStateName">TangentHDState</string>
+	<string name="key">TangentHDSharedPreferences</string>
+	<string-array name="color_array">
         <item>magenta</item>
         <item>red</item>
         <item>orange</item>

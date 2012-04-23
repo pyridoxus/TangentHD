@@ -3,6 +3,7 @@ package cmcculloch1.csc212;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -20,6 +21,9 @@ public class TangentHDActivity extends Activity {
 	private SeekBar leftSeekBar;
 	private SeekBar rightSeekBar;
 	private TextView equationName;
+	private String APP_STATE_NAME;
+	private String KEY;
+	private int left, right, eq;
 	
     /** Called when the activity is first created. */
     @Override
@@ -35,9 +39,23 @@ public class TangentHDActivity extends Activity {
         registerForContextMenu(graph);
         setupLeftSeekBar(leftSeekBarRange);
         setupRightSeekBar(rightSeekBarRange);
+        // Get SharedPreferences name from XML string resource
+        APP_STATE_NAME = getResources().getString(R.string.appStateName);
+        KEY = getResources().getString(R.string.key);
+        eq = getTangentHDPreferences();
+        // Change all settings according to the preferences
+        
     }
     
+    
     @Override
+	protected void onPause() {
+		super.onPause();
+		putTangentHDPreferences();
+	}
+
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -203,4 +221,36 @@ public class TangentHDActivity extends Activity {
         intent.putExtra(getPackageName() + ".itemColor", c); // Make intent request
         startActivity(intent);
     }
+    
+ // Put state in SharedPreferences
+    private void putTangentHDPreferences()
+    {
+        // Get a SharedPreferences file
+        SharedPreferences state = getSharedPreferences(APP_STATE_NAME,MODE_PRIVATE);
+          
+        // Get a SharedPreferences editor
+        SharedPreferences.Editor editor = state.edit();
+   
+        // Load the editor with the data
+        editor.putInt(KEY + ".leftSeekBar", leftSeekBar.getProgress());
+        editor.putInt(KEY + ".rightSeekBar", rightSeekBar.getProgress());
+        editor.putInt(KEY + ".equation", graph.getCurrentEquationIdx());
+       
+        // Commit the editor additions
+        editor.commit();
+    }
+
+    // Get state in SharedPreferences
+    private int getTangentHDPreferences()
+    {
+        // Get a SharedPreferences file
+        SharedPreferences state = getSharedPreferences(APP_STATE_NAME,MODE_PRIVATE);
+          
+        // Get data
+        leftSeekBar.setProgress(state.getInt(KEY + ".leftSeekBar", 0));
+        rightSeekBar.setProgress(state.getInt(KEY + ".righttSeekBar", 0));
+        // Return the index to the equation to use
+        return state.getInt(KEY + ".equation", 0);
+    }
+
 }

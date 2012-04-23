@@ -325,4 +325,8 @@ public class GraphView extends View {
 		else tangent.clearState(2);
 		this.invalidate();
 	}
+	
+	public int getCurrentEquationIdx() {
+		return currentEq;
+	}
 }
