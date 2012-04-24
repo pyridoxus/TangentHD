@@ -151,8 +151,8 @@ public class GraphView extends View {
 //			testEquation(parabolaEq);
 //			testEquation(astroidEq);
 //			testGrid(grid);
-			testSecant(leftSecant);
-			testSecant(rightSecant);
+//			testSecant(leftSecant);
+//			testSecant(rightSecant);
 //			System.out.println("Initializing everything in draw...");
 		}
 		if(fullRedraw == true) {

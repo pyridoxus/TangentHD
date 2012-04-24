@@ -17,6 +17,7 @@ public class ColorChooseActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        Log.i(getClass().getSimpleName(), "OnCreate()");
 		super.onCreate(savedInstanceState);
 		colors = new int[10];
 		getColors();

@@ -23,11 +23,12 @@ public class TangentHDActivity extends Activity {
 	private TextView equationName;
 	private String APP_STATE_NAME;
 	private String KEY;
-	private int left, right, eq;
+	private int left, right;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i(getClass().getSimpleName(), "OnCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         graph = (GraphView) findViewById(R.id.graphView);
@@ -42,14 +43,15 @@ public class TangentHDActivity extends Activity {
         // Get SharedPreferences name from XML string resource
         APP_STATE_NAME = getResources().getString(R.string.appStateName);
         KEY = getResources().getString(R.string.key);
-        eq = getTangentHDPreferences();
-        // Change all settings according to the preferences
-        
+        setEquation(getTangentHDPreferences());
+        leftSeekBar.setProgress(this.left);
+        rightSeekBar.setProgress(this.right);
     }
     
     
     @Override
 	protected void onPause() {
+        Log.i(getClass().getSimpleName(), "OnCreate()");
 		super.onPause();
 		putTangentHDPreferences();
 	}
@@ -107,15 +109,20 @@ public class TangentHDActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int m_id = item.getItemId();
+        if(setEquation(m_id) == false) return super.onContextItemSelected(item);
+        return true;
+    }
+    
+    private boolean setEquation(int idx) {
         Context context = getApplicationContext();
         String name;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context,
     			getString(R.string.app_name), duration);
-        int m_id = item.getItemId();
         int param = 0;
 
-        switch (m_id) {
+        switch (idx) {
             case R.id.equation1:
             	name = getString(R.string.equation1);
             	toast = Toast.makeText(context, name, duration);
@@ -137,7 +144,7 @@ public class TangentHDActivity extends Activity {
             case R.id.equation_exit:
             break;
             default:
-                return super.onContextItemSelected(item);
+                return false; 
         }
         setSeekBarRanges(graph.setEquation(param));
         toast.show();
@@ -225,16 +232,23 @@ public class TangentHDActivity extends Activity {
  // Put state in SharedPreferences
     private void putTangentHDPreferences()
     {
+        Log.i(getClass().getSimpleName(), "In putTangentHDPreferences()");
         // Get a SharedPreferences file
         SharedPreferences state = getSharedPreferences(APP_STATE_NAME,MODE_PRIVATE);
           
         // Get a SharedPreferences editor
         SharedPreferences.Editor editor = state.edit();
    
+        int left = leftSeekBar.getProgress();
+        int right = rightSeekBar.getProgress();
+        int eq = graph.getCurrentEquationIdx();
+        Log.i(getClass().getSimpleName(), "left = " + left);
+        Log.i(getClass().getSimpleName(), "right = " + right);
+        Log.i(getClass().getSimpleName(), "eq = " + eq);
         // Load the editor with the data
-        editor.putInt(KEY + ".leftSeekBar", leftSeekBar.getProgress());
-        editor.putInt(KEY + ".rightSeekBar", rightSeekBar.getProgress());
-        editor.putInt(KEY + ".equation", graph.getCurrentEquationIdx());
+        editor.putInt(KEY + ".leftSeekBar", left);
+        editor.putInt(KEY + ".rightSeekBar", right);
+        editor.putInt(KEY + ".equation", eq);
        
         // Commit the editor additions
         editor.commit();
@@ -243,14 +257,29 @@ public class TangentHDActivity extends Activity {
     // Get state in SharedPreferences
     private int getTangentHDPreferences()
     {
+        Log.i(getClass().getSimpleName(), "In getTangentHDPreferences()");
         // Get a SharedPreferences file
         SharedPreferences state = getSharedPreferences(APP_STATE_NAME,MODE_PRIVATE);
-          
-        // Get data
-        leftSeekBar.setProgress(state.getInt(KEY + ".leftSeekBar", 0));
-        rightSeekBar.setProgress(state.getInt(KEY + ".righttSeekBar", 0));
+        int eq = -1;
+        if(state != null) {
+	        // Get data
+	        this.left = state.getInt(KEY + ".leftSeekBar", 0);
+	        this.right = state.getInt(KEY + ".rightSeekBar", 0);
+	        eq = state.getInt(KEY + ".equation", 0);
+	        Log.i(getClass().getSimpleName(), "left = " + left);
+	        Log.i(getClass().getSimpleName(), "right = " + right);
+	        Log.i(getClass().getSimpleName(), "eq = " + eq);
+        }
+        switch(eq) {
+        	case 0:
+        		return R.id.equation1;
+        	case 1:
+        		return R.id.equation2;
+        	case 2:
+        		return R.id.equation3;
+        }
         // Return the index to the equation to use
-        return state.getInt(KEY + ".equation", 0);
+        return eq;
     }
 
 }
