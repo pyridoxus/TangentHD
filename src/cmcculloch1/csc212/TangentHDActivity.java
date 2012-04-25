@@ -186,6 +186,25 @@ public class TangentHDActivity extends Activity {
                 return false; 
         }
         setSeekBarRanges(graph.setEquation(param));
+        if(this.initPrefs == 1) {
+            SharedPreferences state = getSharedPreferences(APP_STATE_NAME,MODE_PRIVATE);
+            if(state != null) {
+    	        // Get data
+		        int leftColor = state.getInt(KEY + ".leftColor", 0);
+		        int rightColor = state.getInt(KEY + ".rightColor", 0);
+		        graph.theEquation.setColor(state.getInt(KEY + ".equationColor", 0));
+		        graph.leftSecant.setColor(leftColor);
+		        graph.leftPoint.setColor(leftColor);
+		        graph.rightSecant.setColor(rightColor);
+		        graph.rightPoint.setColor(rightColor);
+//    			this.invalidate = state.getInt(KEY + ".invalidate", 1);
+
+//    	        eq = state.getInt(KEY + ".equation", 0);
+//    	        Log.i(getClass().getSimpleName(), "left = " + left);
+//    	        Log.i(getClass().getSimpleName(), "right = " + right);
+//    	        Log.i(getClass().getSimpleName(), "eq = " + eq);
+            }
+        }
         toast.show();
         return true;
     }
