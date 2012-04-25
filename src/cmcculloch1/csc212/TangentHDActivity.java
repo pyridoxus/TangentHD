@@ -44,14 +44,16 @@ public class TangentHDActivity extends Activity {
         APP_STATE_NAME = getResources().getString(R.string.appStateName);
         KEY = getResources().getString(R.string.key);
         setEquation(getTangentHDPreferences());
-        leftSeekBar.setProgress(this.left);
-        rightSeekBar.setProgress(this.right);
+        if(this.left != -1) {
+	        leftSeekBar.setProgress(this.left);
+	        rightSeekBar.setProgress(this.right);
+        }
     }
     
     
     @Override
 	protected void onPause() {
-        Log.i(getClass().getSimpleName(), "OnCreate()");
+        Log.i(getClass().getSimpleName(), "OnPause()");
 		super.onPause();
 		putTangentHDPreferences();
 	}
@@ -263,14 +265,15 @@ public class TangentHDActivity extends Activity {
         int eq = -1;
         if(state != null) {
 	        // Get data
-	        this.left = state.getInt(KEY + ".leftSeekBar", 0);
-	        this.right = state.getInt(KEY + ".rightSeekBar", 0);
-	        eq = state.getInt(KEY + ".equation", 0);
+	        this.left = state.getInt(KEY + ".leftSeekBar", -1);
+	        this.right = state.getInt(KEY + ".rightSeekBar", -1);
+	        eq = state.getInt(KEY + ".equation", -1);
 	        Log.i(getClass().getSimpleName(), "left = " + left);
 	        Log.i(getClass().getSimpleName(), "right = " + right);
 	        Log.i(getClass().getSimpleName(), "eq = " + eq);
         }
         switch(eq) {
+        	case -1:
         	case 0:
         		return R.id.equation1;
         	case 1:
@@ -278,6 +281,11 @@ public class TangentHDActivity extends Activity {
         	case 2:
         		return R.id.equation3;
         }
+        // Clearing out preferences for debugging purposes
+//        SharedPreferences.Editor editor = state.edit();
+//        editor.clear();
+//        editor.commit();
+//        setEquation(R.id.equation1);
         // Return the index to the equation to use
         return eq;
     }
