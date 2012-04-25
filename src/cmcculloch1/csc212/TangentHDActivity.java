@@ -197,6 +197,13 @@ public class TangentHDActivity extends Activity {
 		        graph.leftPoint.setColor(leftColor);
 		        graph.rightSecant.setColor(rightColor);
 		        graph.rightPoint.setColor(rightColor);
+		        leftSeekBar.setBackgroundColor(leftColor);
+		        rightSeekBar.setBackgroundColor(rightColor);
+		        TextView t = (TextView) findViewById(R.id.textView1);
+		        t.setTextColor(leftColor);
+		        t = (TextView) findViewById(R.id.textView2);
+		        t.setTextColor(rightColor);
+		        
 //    			this.invalidate = state.getInt(KEY + ".invalidate", 1);
 
 //    	        eq = state.getInt(KEY + ".equation", 0);
@@ -337,6 +344,12 @@ public class TangentHDActivity extends Activity {
 		        graph.leftPoint.setColor(leftColor);
 		        graph.rightSecant.setColor(rightColor);
 		        graph.rightPoint.setColor(rightColor);
+		        leftSeekBar.setBackgroundColor(leftColor);
+		        rightSeekBar.setBackgroundColor(rightColor);
+		        TextView t = (TextView) findViewById(R.id.textView1);
+		        t.setTextColor(leftColor);
+		        t = (TextView) findViewById(R.id.textView2);
+		        t.setTextColor(rightColor);
 	        }
 			this.invalidate = state.getInt(KEY + ".invalidate", 1);
 
