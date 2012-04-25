@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -246,6 +248,8 @@ public class TangentHDActivity extends Activity {
         		
         	}
         });
+        // Make background visible by removing the progress drawable
+        leftSeekBar.setProgressDrawable(null);
     }
     
     private void leftSeekBarCB(int ID, int progress) {
@@ -277,6 +281,8 @@ public class TangentHDActivity extends Activity {
         		
         	}
         });
+        // Make background visible by removing the progress drawable
+        rightSeekBar.setProgressDrawable(null);
     }
     
     private void rightSeekBarCB(int ID, int progress) {
