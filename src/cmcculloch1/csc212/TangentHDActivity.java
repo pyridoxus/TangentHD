@@ -23,7 +23,7 @@ public class TangentHDActivity extends Activity {
 	private TextView equationName;
 	private String APP_STATE_NAME;
 	private String KEY;
-	private int left, right;
+	private int left, right, initPrefs;
 	
     /** Called when the activity is first created. */
     @Override
@@ -44,8 +44,10 @@ public class TangentHDActivity extends Activity {
         APP_STATE_NAME = getResources().getString(R.string.appStateName);
         KEY = getResources().getString(R.string.key);
         setEquation(getTangentHDPreferences());
-        leftSeekBar.setProgress(this.left);
-        rightSeekBar.setProgress(this.right);
+        if(this.initPrefs == 1) {
+        	leftSeekBar.setProgress(this.left);
+            rightSeekBar.setProgress(this.right);
+        }
     }
     
     
@@ -249,6 +251,7 @@ public class TangentHDActivity extends Activity {
         editor.putInt(KEY + ".leftSeekBar", left);
         editor.putInt(KEY + ".rightSeekBar", right);
         editor.putInt(KEY + ".equation", eq);
+        editor.putInt(KEY + ".initPrefs", 1);	// Make prefs always read
        
         // Commit the editor additions
         editor.commit();
@@ -263,6 +266,7 @@ public class TangentHDActivity extends Activity {
         int eq = -1;
         if(state != null) {
 	        // Get data
+        	this.initPrefs = state.getInt(KEY + ".initPrefs", 0);
 	        this.left = state.getInt(KEY + ".leftSeekBar", 0);
 	        this.right = state.getInt(KEY + ".rightSeekBar", 0);
 	        eq = state.getInt(KEY + ".equation", 0);
