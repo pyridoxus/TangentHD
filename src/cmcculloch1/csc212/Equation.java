@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 public class Equation extends GraphInterpolate {
 	protected ArrayList<Point2D> data;
@@ -67,6 +68,7 @@ public class Equation extends GraphInterpolate {
 					(float)t.getX(), (float)t.getY(), paint);
 			q = p;
 		}
+        Log.i(getClass().getSimpleName(), "Equation.draw(): color = " + this.getColor());
 	}
 	
 	public double getStartX() {
