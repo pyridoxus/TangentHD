@@ -200,44 +200,44 @@ public class GraphView extends View {
 		System.out.println("Inside init()");
 	}
 	
-	private void testInterpolation() {
-		GraphInterpolate interpolateTest = 
-				new GraphInterpolate(gAttr.getSizeRatio(0),
-									 gAttr.getOffsetX(0),
-									 gAttr.getOffsetY(0));
-		interpolateTest.setBmp(bg);
-		Point2D temp = new Point2D();
-//		System.out.println("Printing conversions...");
-		interpolateTest.graphToBmp(0, 0);
-		temp.setX(interpolateTest.getInterpX());
-		temp.setY(interpolateTest.getInterpY());
+//	private void testInterpolation() {
+//		GraphInterpolate interpolateTest = 
+//				new GraphInterpolate(gAttr.getSizeRatio(0),
+//									 gAttr.getOffsetX(0),
+//									 gAttr.getOffsetY(0));
+//		interpolateTest.setBmp(bg);
+//		Point2D temp = new Point2D();
+////		System.out.println("Printing conversions...");
+//		interpolateTest.graphToBmp(0, 0);
+//		temp.setX(interpolateTest.getInterpX());
+//		temp.setY(interpolateTest.getInterpY());
+////		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+////								Double.toString(temp.getY()) + ")");
+//		interpolateTest.graphToBmp(1, 1);
+//		temp.setX(interpolateTest.getInterpX());
+//		temp.setY(interpolateTest.getInterpY());
 //		System.out.println("(" + Double.toString(temp.getX()) + ", " +
 //								Double.toString(temp.getY()) + ")");
-		interpolateTest.graphToBmp(1, 1);
-		temp.setX(interpolateTest.getInterpX());
-		temp.setY(interpolateTest.getInterpY());
-		System.out.println("(" + Double.toString(temp.getX()) + ", " +
-								Double.toString(temp.getY()) + ")");
-		interpolateTest.graphToBmp(-1, -1);
-		temp.setX(interpolateTest.getInterpX());
-		temp.setY(interpolateTest.getInterpY());
-		System.out.println("(" + Double.toString(temp.getX()) + ", " +
-								Double.toString(temp.getY()) + ")");
-	}
+//		interpolateTest.graphToBmp(-1, -1);
+//		temp.setX(interpolateTest.getInterpX());
+//		temp.setY(interpolateTest.getInterpY());
+//		System.out.println("(" + Double.toString(temp.getX()) + ", " +
+//								Double.toString(temp.getY()) + ")");
+//	}
 
-	private void testEquation(Equation eq) {
-		System.out.println("Inside testEquation");
-		System.out.println(eq.toString());
-	}
-	
-	private void testGrid(Grid g) {
-		System.out.println(g.toString());
-	}
-	
-	private void testSecant(Secant s) {
-		System.out.println(s.toString());
-	}
-	
+//	private void testEquation(Equation eq) {
+//		System.out.println("Inside testEquation");
+//		System.out.println(eq.toString());
+//	}
+//	
+//	private void testGrid(Grid g) {
+//		System.out.println(g.toString());
+//	}
+//	
+//	private void testSecant(Secant s) {
+//		System.out.println(s.toString());
+//	}
+//	
 	private void setInternalEquation() {
 		switch (currentEq) {
 			case 0: theEquation = powerEq; break;
