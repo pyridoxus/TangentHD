@@ -23,7 +23,7 @@ public class TangentHDActivity extends Activity {
 	private TextView equationName;
 	private String APP_STATE_NAME;
 	private String KEY;
-	private int left, right, initPrefs;
+	private int left, right, initPrefs, invalidate;
 	
     /** Called when the activity is first created. */
     @Override
@@ -53,13 +53,47 @@ public class TangentHDActivity extends Activity {
     
     @Override
 	protected void onPause() {
-        Log.i(getClass().getSimpleName(), "OnCreate()");
+        Log.i(getClass().getSimpleName(), "OnPause()");
 		super.onPause();
 		putTangentHDPreferences();
 	}
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(getClass().getSimpleName(), "onResume");
+    	getTangentHDPreferences();
+        if(this.invalidate == 1) {
+        	this.invalidate = 0;
+        	graph.invalidate();
+        }
+    }
+  
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(getClass().getSimpleName(), "onDestroy");
+    }
+  
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(getClass().getSimpleName(), "onRestart");
+    }
+  
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(getClass().getSimpleName(), "onStart");
+    }
+  
+    @Override
+    protected void onStop() {
+        super.onStop();
+       Log.i(getClass().getSimpleName(), "onStop");
+    }
 
-	@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -84,25 +118,28 @@ public class TangentHDActivity extends Activity {
 
         switch (m_id) {
             case R.id.m_graphColor:
-            	getColor(graph.theEquation.getColor());
+            	getColor(0, graph.theEquation.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_graphColor), duration);
                 toast.show();
+                graph.invalidate();
                 return true;
             case R.id.m_leftColor:
-            	getColor(graph.leftSecant.getColor());
+            	getColor(1, graph.leftSecant.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_leftColor), duration);
                 toast.show();
+                graph.invalidate();
                 return true;
             case R.id.m_rightColor:
-            	getColor(graph.rightSecant.getColor());
+            	getColor(2, graph.rightSecant.getColor());
             	// Will do something else here in case statement in future
             	toast = Toast.makeText(context,
             			getString(R.string.s_rightColor), duration);
                 toast.show();
+                graph.invalidate();
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -222,12 +259,13 @@ public class TangentHDActivity extends Activity {
 //    						" progress: " + progress);
     }
 
-    private void getColor(int c) {
+    private void getColor(int i, int c) {
     	// Create an intent to start an Activity
         Intent intent = new Intent(getApplicationContext(),
                ColorChooseActivity.class);
         Log.i(getClass().getSimpleName(), "Sending color: " + c);
         intent.putExtra(getPackageName() + ".itemColor", c); // Make intent request
+        intent.putExtra(getPackageName() + ".item", i);
         startActivity(intent);
     }
     
@@ -252,7 +290,7 @@ public class TangentHDActivity extends Activity {
         editor.putInt(KEY + ".rightSeekBar", right);
         editor.putInt(KEY + ".equation", eq);
         editor.putInt(KEY + ".initPrefs", 1);	// Make prefs always read
-       
+		editor.putInt(KEY + ".invalidate", 0);
         // Commit the editor additions
         editor.commit();
     }
@@ -266,15 +304,25 @@ public class TangentHDActivity extends Activity {
         int eq = -1;
         if(state != null) {
 	        // Get data
-        	this.initPrefs = state.getInt(KEY + ".initPrefs", 0);
-	        this.left = state.getInt(KEY + ".leftSeekBar", 0);
-	        this.right = state.getInt(KEY + ".rightSeekBar", 0);
-	        eq = state.getInt(KEY + ".equation", 0);
+			this.initPrefs = state.getInt(KEY + ".initPrefs", 0);
+	        this.left = state.getInt(KEY + ".leftSeekBar", -1);
+	        this.right = state.getInt(KEY + ".rightSeekBar", -1);
+	        int leftColor = state.getInt(KEY + ".leftColor", 0);
+	        int rightColor = state.getInt(KEY + ".rightColor", 0);
+	        graph.theEquation.setColor(state.getInt(KEY + ".equationColor", 0));
+	        graph.leftSecant.setColor(leftColor);
+	        graph.leftPoint.setColor(leftColor);
+	        graph.rightSecant.setColor(rightColor);
+	        graph.rightPoint.setColor(rightColor);
+			this.invalidate = state.getInt(KEY + ".invalidate", 1);
+
+	        eq = state.getInt(KEY + ".equation", -1);
 	        Log.i(getClass().getSimpleName(), "left = " + left);
 	        Log.i(getClass().getSimpleName(), "right = " + right);
 	        Log.i(getClass().getSimpleName(), "eq = " + eq);
         }
         switch(eq) {
+        	case -1:
         	case 0:
         		return R.id.equation1;
         	case 1:
@@ -282,6 +330,11 @@ public class TangentHDActivity extends Activity {
         	case 2:
         		return R.id.equation3;
         }
+        // Clearing out preferences for debugging purposes
+//        SharedPreferences.Editor editor = state.edit();
+//        editor.clear();
+//        editor.commit();
+//        setEquation(R.id.equation1);
         // Return the index to the equation to use
         return eq;
     }
