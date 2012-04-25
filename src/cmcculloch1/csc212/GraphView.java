@@ -135,25 +135,27 @@ public class GraphView extends View {
 			// First time this is called, so create everything according to
 			// the size of the layout.
 			createBMPs();
-			powerEq.setBmp(bg);
-			parabolaEq.setBmp(bg);
-			astroidEq.setBmp(bg);
-			grid.setBmp(bg);
-			leftSecant.setBmp(bg);
-			rightSecant.setBmp(bg);
-			leftPoint.setBmp(bg);
-			rightPoint.setBmp(bg);
-			centerPoint.setBmp(bg);
-			tangent.setBmp(bg);
-			setInternalEquation();
-//			testInterpolation();
-//			testEquation(powerEq);
-//			testEquation(parabolaEq);
-//			testEquation(astroidEq);
-//			testGrid(grid);
-//			testSecant(leftSecant);
-//			testSecant(rightSecant);
-//			System.out.println("Initializing everything in draw...");
+			if(bg != null) {
+				powerEq.setBmp(bg);
+				parabolaEq.setBmp(bg);
+				astroidEq.setBmp(bg);
+				grid.setBmp(bg);
+				leftSecant.setBmp(bg);
+				rightSecant.setBmp(bg);
+				leftPoint.setBmp(bg);
+				rightPoint.setBmp(bg);
+				centerPoint.setBmp(bg);
+				tangent.setBmp(bg);
+				setInternalEquation();
+	//			testInterpolation();
+	//			testEquation(powerEq);
+	//			testEquation(parabolaEq);
+	//			testEquation(astroidEq);
+	//			testGrid(grid);
+	//			testSecant(leftSecant);
+	//			testSecant(rightSecant);
+	//			System.out.println("Initializing everything in draw...");
+			}
 		}
 		if(fullRedraw == true) {
 			grid.draw(canvas);
