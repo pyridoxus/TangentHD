@@ -291,6 +291,9 @@ public class TangentHDActivity extends Activity {
         editor.putInt(KEY + ".equation", eq);
         editor.putInt(KEY + ".initPrefs", 1);	// Make prefs always read
 		editor.putInt(KEY + ".invalidate", 0);
+		editor.putInt(KEY + ".leftColor", graph.leftSecant.getColor());
+		editor.putInt(KEY + ".rightColor", graph.rightSecant.getColor());
+		editor.putInt(KEY + ".equationColor", graph.theEquation.getColor());
         // Commit the editor additions
         editor.commit();
     }
@@ -305,18 +308,20 @@ public class TangentHDActivity extends Activity {
         if(state != null) {
 	        // Get data
 			this.initPrefs = state.getInt(KEY + ".initPrefs", 0);
-	        this.left = state.getInt(KEY + ".leftSeekBar", -1);
-	        this.right = state.getInt(KEY + ".rightSeekBar", -1);
-	        int leftColor = state.getInt(KEY + ".leftColor", 0);
-	        int rightColor = state.getInt(KEY + ".rightColor", 0);
-	        graph.theEquation.setColor(state.getInt(KEY + ".equationColor", 0));
-	        graph.leftSecant.setColor(leftColor);
-	        graph.leftPoint.setColor(leftColor);
-	        graph.rightSecant.setColor(rightColor);
-	        graph.rightPoint.setColor(rightColor);
+	        if(this.initPrefs == 1) {
+		        this.left = state.getInt(KEY + ".leftSeekBar", -1);
+		        this.right = state.getInt(KEY + ".rightSeekBar", -1);
+		        int leftColor = state.getInt(KEY + ".leftColor", 0);
+		        int rightColor = state.getInt(KEY + ".rightColor", 0);
+		        graph.theEquation.setColor(state.getInt(KEY + ".equationColor", 0));
+		        graph.leftSecant.setColor(leftColor);
+		        graph.leftPoint.setColor(leftColor);
+		        graph.rightSecant.setColor(rightColor);
+		        graph.rightPoint.setColor(rightColor);
+	        }
 			this.invalidate = state.getInt(KEY + ".invalidate", 1);
 
-	        eq = state.getInt(KEY + ".equation", -1);
+	        eq = state.getInt(KEY + ".equation", 0);
 	        Log.i(getClass().getSimpleName(), "left = " + left);
 	        Log.i(getClass().getSimpleName(), "right = " + right);
 	        Log.i(getClass().getSimpleName(), "eq = " + eq);
