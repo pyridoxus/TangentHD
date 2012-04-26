@@ -1,11 +1,9 @@
 package cmcculloch1.csc212;
 
-import cmcculloch1.csc212.R.drawable;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TangentHDActivity extends Activity {
 	private GraphView graph;
@@ -110,38 +107,23 @@ public class TangentHDActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
     }
-    
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context,
-    			getString(R.string.app_name), duration);
         int m_id = item.getItemId();
 
         switch (m_id) {
             case R.id.m_graphColor:
             	getColor(0, graph.theEquation.getColor());
-            	// Will do something else here in case statement in future
-            	toast = Toast.makeText(context,
-            			getString(R.string.s_graphColor), duration);
-                toast.show();
                 graph.invalidate();
                 return true;
             case R.id.m_leftColor:
             	getColor(1, graph.leftSecant.getColor());
-            	// Will do something else here in case statement in future
-            	toast = Toast.makeText(context,
-            			getString(R.string.s_leftColor), duration);
-                toast.show();
                 graph.invalidate();
                 return true;
             case R.id.m_rightColor:
             	getColor(2, graph.rightSecant.getColor());
-            	// Will do something else here in case statement in future
-            	toast = Toast.makeText(context,
-            			getString(R.string.s_rightColor), duration);
-                toast.show();
                 graph.invalidate();
                 return true;
             default:
@@ -158,28 +140,18 @@ public class TangentHDActivity extends Activity {
     
     private boolean setEquation(int idx) {
         Context context = getApplicationContext();
-        String name;
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context,
-    			getString(R.string.app_name), duration);
         int param = 0;
 
         switch (idx) {
             case R.id.equation1:
-            	name = getString(R.string.equation1);
-            	toast = Toast.makeText(context, name, duration);
                 equationName.setBackgroundResource(R.drawable.snapshot_parabola_crop);
             	param = 0; // I don't like doing this, but work around it later
             break;
             case R.id.equation2:
-            	name = getString(R.string.equation2);
-            	toast = Toast.makeText(context, name, duration);
                 equationName.setBackgroundResource(R.drawable.snapshot_abs_crop);
             	param = 1;
             break;
             case R.id.equation3:
-            	name = getString(R.string.equation3);
-            	toast = Toast.makeText(context, name, duration);
                 equationName.setBackgroundResource(R.drawable.snapshot_astroid_crop);
             	param = 2;
             break;
@@ -215,7 +187,6 @@ public class TangentHDActivity extends Activity {
 //    	        Log.i(getClass().getSimpleName(), "eq = " + eq);
             }
         }
-        toast.show();
         return true;
     }
     

@@ -58,8 +58,6 @@ public class ColorChooseActivity extends Activity {
 	    public void onItemSelected(AdapterView<?> parent,
 	        View view, int pos, long id) {
 	    	choice = pos;
-	      Toast.makeText(parent.getContext(), "The color is " +
-	          parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
 	    }
 
 	    public void onNothingSelected(AdapterView parent) {
