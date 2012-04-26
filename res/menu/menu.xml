@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 	<item android:id="@+id/equation1"
-		android:title="@string/equation1" />
+		android:title="@string/equation1"
+		android:icon="@drawable/button_parabola_crop" />
 	<item android:id="@+id/equation2"
-		android:title="@string/equation2" />
+		android:title="@string/equation2"
+		android:icon="@drawable/button_abs_crop" />
 	<item android:id="@+id/equation3"
-		android:title="@string/equation3" />
-	<item android:id="@+id/equation_exit"
-		android:title="@string/exit" />
+		android:title="@string/equation3"
+		android:icon="@drawable/button_astroid_crop" />
+	<item android:id="@+id/equation_reset"
+		android:title="@string/reset" />
 </menu>

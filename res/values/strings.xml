@@ -15,6 +15,7 @@
 	<string name="s_leftColor">Choose left secant color</string>
 	<string name="s_rightColor">Choose right secant color</string>
 	<string name="exit">Exit</string>
+	<string name="reset">Reset</string>
 	<string name="chooseColor">Choose Color</string>
 	<string name="buttonOk">Ok</string>
 	<string name="buttonCancel">Cancel</string>

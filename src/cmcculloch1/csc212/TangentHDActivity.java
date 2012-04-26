@@ -180,7 +180,7 @@ public class TangentHDActivity extends Activity {
                 equationName.setText(name);
             	param = 2;
             break;
-            case R.id.equation_exit:
+            case R.id.equation_reset:
             break;
             default:
                 return false; 
@@ -228,19 +228,16 @@ public class TangentHDActivity extends Activity {
     	leftSeekBar.setMax(leftSeekBarRange);
         leftSeekBar.setOnSeekBarChangeListener(
         				new SeekBar.OnSeekBarChangeListener() {
-        	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
         		leftSeekBarCB(R.id.seekBar1, progress);        		
         	}
 
-        	@Override
         	public void onStartTrackingTouch(SeekBar seekBar) {
         		// TODO Auto-generated method stub
         		
         	}
 
-        	@Override
         	public void onStopTrackingTouch(SeekBar seekBar) {
         		// TODO Auto-generated method stub
         		
@@ -261,19 +258,16 @@ public class TangentHDActivity extends Activity {
     	rightSeekBar.setMax(rightSeekBarRange);
     	rightSeekBar.setOnSeekBarChangeListener(
         				new SeekBar.OnSeekBarChangeListener() {
-        	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
         		rightSeekBarCB(R.id.seekBar2, progress);        		
         	}
 
-        	@Override
         	public void onStartTrackingTouch(SeekBar seekBar) {
         		// TODO Auto-generated method stub
         		
         	}
 
-        	@Override
         	public void onStopTrackingTouch(SeekBar seekBar) {
         		// TODO Auto-generated method stub
         		
