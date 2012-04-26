@@ -1,9 +1,11 @@
 package cmcculloch1.csc212;
 
+import cmcculloch1.csc212.R.drawable;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +23,11 @@ public class TangentHDActivity extends Activity {
 	private GraphView graph;
 	private SeekBar leftSeekBar;
 	private SeekBar rightSeekBar;
-	private TextView equationName;
+	private ImageView equationName;
 	private String APP_STATE_NAME;
 	private String KEY;
 	private int left, right, initPrefs, invalidate;
-	
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class TangentHDActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         graph = (GraphView) findViewById(R.id.graphView);
-        equationName = (TextView) findViewById(R.id.textView3);
+        equationName = (ImageView) findViewById(R.id.imageView3);
         Point2D p = new Point2D(graph.setAttributes(
         				(GraphAttributes)findViewById(R.id.graphAttributes)));
         int leftSeekBarRange = (int)p.getX();
@@ -165,19 +168,19 @@ public class TangentHDActivity extends Activity {
             case R.id.equation1:
             	name = getString(R.string.equation1);
             	toast = Toast.makeText(context, name, duration);
-                equationName.setText(name);
+                equationName.setBackgroundResource(R.drawable.snapshot_parabola_crop);
             	param = 0; // I don't like doing this, but work around it later
             break;
             case R.id.equation2:
             	name = getString(R.string.equation2);
             	toast = Toast.makeText(context, name, duration);
-                equationName.setText(name);
+                equationName.setBackgroundResource(R.drawable.snapshot_abs_crop);
             	param = 1;
             break;
             case R.id.equation3:
             	name = getString(R.string.equation3);
             	toast = Toast.makeText(context, name, duration);
-                equationName.setText(name);
+                equationName.setBackgroundResource(R.drawable.snapshot_astroid_crop);
             	param = 2;
             break;
             case R.id.equation_reset:

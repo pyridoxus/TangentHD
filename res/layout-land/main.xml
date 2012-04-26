@@ -88,14 +88,13 @@
 	    android:layout_height="match_parent"
 	    android:orientation="vertical" >
 
-		<TextView
-		    android:id="@+id/textView3"
-		    android:layout_width="match_parent"
+		<ImageView
+		    android:id="@+id/imageView3"
+		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="5"
         android:gravity="center"
-		    android:text="@string/equation1"
-		    android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:contentDescription="@string/equation1" />
 
 		<TextView
 		    android:id="@+id/textView1"
