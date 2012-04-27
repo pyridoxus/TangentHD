@@ -7,11 +7,17 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 
+// DISCLAIMER:
+
 // This project is a good example of needing to plan ahead. There are some
 // bad (or at least less efficient or messy) ways of setting up objects in
 // both this View and the activity associated with it. I suspect there is a
 // much better way to set up objects. First, I must better understand the way
 // the Android objects are set up, when things occur, what objects exist, etc.
+// Another example is that most of the code in the entire project was set in
+// stone before the introduction to intents, bundles, and shared preferences.
+// Ideally, this project should be rewritten with those concepts in mind.
+// There are other notes sprinkled through this and other files in the project.
 public class GraphView extends View {
 	Bitmap bg = null;	// Background bitmap holds more static image of graph
 	GraphAttributes gAttr;	// Attributes of the 3 equations
@@ -27,7 +33,6 @@ public class GraphView extends View {
 	GraphPoint centerPoint = null;	// Point of interest
 	TangentResolver tangent = null;	// Graph the secant lines at limit
 	int currentEq = 0;				// Index of current equation
-	boolean fullRedraw = true;		// If true, do full redraw, else do partial
 	
 	public GraphView(Context context) {
 		// TODO Auto-generated method stub
@@ -129,7 +134,12 @@ public class GraphView extends View {
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
+		// Tried to think of way to put all GraphObjectBase objects into an
+		// array to clean up the code a bit. However, I don't always use all
+		// objects at the same time as I do in this function. That would mean
+		// creating XML resources to name the objects (essentially that is
+		// enumeration) so that I can access them individually from the array.
+		// I ran out of time to try implementing that idea.
 		super.onDraw(canvas);
 		if(bg == null) {
 			// First time this is called, so create everything according to
@@ -157,12 +167,6 @@ public class GraphView extends View {
 	//			System.out.println("Initializing everything in draw...");
 			}
 		}
-		if(fullRedraw == true) {
-			grid.draw(canvas);
-			theEquation.draw(canvas);
-			fullRedraw = false;
-//			System.out.println("Full redraw in draw...");
-		}
 		grid.draw(canvas);
 		theEquation.draw(canvas);
 		leftSecant.draw(canvas);
@@ -171,7 +175,6 @@ public class GraphView extends View {
 		rightPoint.draw(canvas);
 		tangent.draw(canvas);
 		centerPoint.draw(canvas);
-//		System.out.println("Regular draw...");
 	}
 	
 	@Override
@@ -194,6 +197,11 @@ public class GraphView extends View {
 	}
 	
 	private void createBMPs() {
+		// Original idea was to have one bitmap contain the grid and equation,
+		// blit this bitmap to another bitmap, then draw secants. However, I
+		// ran out of time trying to figure it out. Android or Java bitmaps do
+		// not seem to behave as intuitively as I originally thought.
+		// Only using one bitmap for now.
 		bg = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
 								Bitmap.Config.ARGB_8888);
 	}
@@ -294,7 +302,6 @@ public class GraphView extends View {
 		tangent.setBmp(bg);
 		presetTangent();
 		
-		fullRedraw = true;
 		this.invalidate();
 		return getSecantRanges();
 	}
