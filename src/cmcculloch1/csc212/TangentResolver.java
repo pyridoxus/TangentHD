@@ -13,7 +13,7 @@ public class TangentResolver extends GraphInterpolate {
 		super(sizeRatio, offsetX, offsetY);
 		this.paint.setStrokeWidth(3);
 		this.paint.setStyle(Style.STROKE);
-		this.paint.setColor(Color.BLACK);
+		this.paint.setColor(Color.WHITE);
 		this.leftOffset = 0.0;
 		this.leftSlope = 0.0;
 		this.rightOffset = 0.0;

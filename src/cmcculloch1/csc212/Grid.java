@@ -13,7 +13,7 @@ public class Grid extends GraphInterpolate {
 	}
 
 	public void draw(Canvas canvas) {
-		paint.setColor(Color.WHITE);
+		paint.setColor(Color.BLACK);
 		canvas.drawPaint(paint);
 //		System.out.println("Drawing grid...");
 		

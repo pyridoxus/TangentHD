@@ -14,7 +14,7 @@ public class GraphPoint extends GraphInterpolate {
 	private void init() {
 		this.p = new Point2D(0, 0);
 		paint.setStrokeWidth(2);
-		paint.setColor(Color.BLACK);
+		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.FILL_AND_STROKE);
 	}
 

@@ -28,7 +28,7 @@ public class Secant extends GraphInterpolate{
 		m = 0;
 		b = 0;
 		paint.setStrokeWidth(2);
-		paint.setColor(Color.BLACK);
+		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.STROKE);
 	}
 

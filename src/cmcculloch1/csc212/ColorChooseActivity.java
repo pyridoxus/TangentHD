@@ -74,7 +74,7 @@ public class ColorChooseActivity extends Activity {
 		colors[5] = getResources().getInteger(R.color.cyan); 
 		colors[6] = getResources().getInteger(R.color.blue); 
 		colors[7] = getResources().getInteger(R.color.violet); 
-		colors[8] = getResources().getInteger(R.color.black);
+		colors[8] = getResources().getInteger(R.color.white);
 		list = getResources().getStringArray(R.array.color_array);
 	}
 	

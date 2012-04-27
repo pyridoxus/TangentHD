@@ -63,7 +63,7 @@
 		<attr name="cyan" format="color" />
 		<attr name="blue" format="color" />
 		<attr name="violet" format="color" />
-		<attr name="black" format="color" />
+		<attr name="white" format="color" />
 								
 	</declare-styleable>
 </resources>
