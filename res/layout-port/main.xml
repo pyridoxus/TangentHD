@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:TangentHD="http://schemas.android.com/apk/res/cmcculloch1.csc212"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+	<cmcculloch1.csc212.GraphView
+       android:id="@+id/graphView"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="81" />
+
+		<ImageView
+		    android:id="@+id/imageView3"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="5"
+        android:gravity="center"
+        android:contentDescription="@string/equation1" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:gravity="bottom"
+        android:text="@string/stringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/magenta" />
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:maxHeight="24dp"
+        android:layout_weight="2"
+        android:background="@color/magenta"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:gravity="bottom|right"
+        android:text="@string/stringRight"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/red" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:maxHeight="23dp"
+        android:layout_weight="2"
+        android:background="@color/red"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:progress="100" />
+
+	<cmcculloch1.csc212.GraphAttributes
+		android:id="@+id/graphAttributes"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_weight="0"
+		TangentHD:sizeRatio1="64.0"
+		TangentHD:offsetX1="0.0"
+		TangentHD:offsetY1="0.0"
+		TangentHD:startX1="-1.6"
+		TangentHD:endX1="1.6"
+		TangentHD:stepX1="0.02"
+		TangentHD:name1="y = x ^ 3"
+		TangentHD:seekLeftStart1="0"
+		TangentHD:seekLeftEnd1="80"
+		TangentHD:seekRightStart1="80"
+		TangentHD:seekRightEnd1="160"
+		TangentHD:secantMid1="80"
+		TangentHD:secantEnd1="160"
+		TangentHD:leftSlope1="0.0"
+		TangentHD:leftOffset1="0.0"
+		TangentHD:rightSlope1="0.0"
+		TangentHD:rightOffset1="0.0"
+		
+		TangentHD:sizeRatio2="80.0"
+		TangentHD:offsetX2="0.0"
+		TangentHD:offsetY2="2.0"
+		TangentHD:startX2="-2.4"
+		TangentHD:endX2="2.4"
+		TangentHD:stepX2="0.02"
+		TangentHD:name2="y = |x ^ 2 - 1|"
+		TangentHD:seekLeftStart2="0"
+		TangentHD:seekLeftEnd2="70"
+		TangentHD:seekRightStart2="70"
+		TangentHD:seekRightEnd2="240"
+		TangentHD:secantMid2="70"
+		TangentHD:secantEnd2="240"
+		TangentHD:leftSlope2="-2.0"
+		TangentHD:leftOffset2="-2.0"
+		TangentHD:rightSlope2="2.0"
+		TangentHD:rightOffset2="2.0"
+		
+		TangentHD:sizeRatio3="160.0"
+		TangentHD:offsetX3="0.0"
+		TangentHD:offsetY3="0.5"
+		TangentHD:startX3="-1.0"
+		TangentHD:endX3="1.0"
+		TangentHD:stepX3="0.02"
+		TangentHD:name3="x ^ (2 / 3) + y ^ (2 / 3) = 1"
+		TangentHD:seekLeftStart3="0"
+		TangentHD:seekLeftEnd3="50"
+		TangentHD:seekRightStart3="50"
+		TangentHD:seekRightEnd3="100"
+		TangentHD:secantMid3="50"
+		TangentHD:secantEnd3="100"
+		TangentHD:leftSlope3="1e+5"
+		TangentHD:leftOffset3="0.0"
+		TangentHD:rightSlope3="1e+5"
+		TangentHD:rightOffset3="0.0"
+
+    	TangentHD:magenta="#FF00FF"
+    	TangentHD:red="#FF0000"
+    	TangentHD:orange="#FF7F00"
+    	TangentHD:yellow="#FFFF00"
+    	TangentHD:green="#00FF00"
+    	TangentHD:cyan="#00FFFF"
+    	TangentHD:blue="#0000FF"
+		TangentHD:violet="#7F00FF"
+    	TangentHD:white="#FFFFFF"
+		
+	/>
+
+</LinearLayout>

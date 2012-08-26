@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="GraphAttributes">
+		<attr name="sizeRatio1" format="float" />
+		<attr name="offsetX1" format="float" />
+		<attr name="offsetY1" format="float" />
+		<attr name="startX1" format="float" />
+		<attr name="endX1" format="float" />
+		<attr name="stepX1" format="float" />
+		<attr name="name1" format="string" />
+		<attr name="seekLeftStart1" format="integer" />
+		<attr name="seekLeftEnd1" format="integer" />
+		<attr name="seekRightStart1" format="integer" />
+		<attr name="seekRightEnd1" format="integer" />
+		<attr name="secantMid1" format="integer" />
+		<attr name="secantEnd1" format="integer" />
+		<attr name="leftSlope1" format="float" />
+		<attr name="leftOffset1" format="float" />
+		<attr name="rightSlope1" format="float" />
+		<attr name="rightOffset1" format="float" />
+								
+		<attr name="sizeRatio2" format="float" />
+		<attr name="offsetX2" format="float" />
+		<attr name="offsetY2" format="float" />
+		<attr name="startX2" format="float" />
+		<attr name="endX2" format="float" />
+		<attr name="stepX2" format="float" />
+		<attr name="name2" format="string" />
+		<attr name="seekLeftStart2" format="integer" />
+		<attr name="seekLeftEnd2" format="integer" />
+		<attr name="seekRightStart2" format="integer" />
+		<attr name="seekRightEnd2" format="integer" />
+		<attr name="secantMid2" format="integer" />
+		<attr name="secantEnd2" format="integer" />
+		<attr name="leftSlope2" format="float" />
+		<attr name="leftOffset2" format="float" />
+		<attr name="rightSlope2" format="float" />
+		<attr name="rightOffset2" format="float" />
+				
+		<attr name="sizeRatio3" format="float" />
+		<attr name="offsetX3" format="float" />
+		<attr name="offsetY3" format="float" />
+		<attr name="startX3" format="float" />
+		<attr name="endX3" format="float" />
+		<attr name="stepX3" format="float" />
+		<attr name="name3" format="string" />
+		<attr name="seekLeftStart3" format="integer" />
+		<attr name="seekLeftEnd3" format="integer" />
+		<attr name="seekRightStart3" format="integer" />
+		<attr name="seekRightEnd3" format="integer" />
+		<attr name="secantMid3" format="integer" />
+		<attr name="secantEnd3" format="integer" />
+		<attr name="leftSlope3" format="float" />
+		<attr name="leftOffset3" format="float" />
+		<attr name="rightSlope3" format="float" />
+		<attr name="rightOffset3" format="float" />
+		
+		<attr name="magenta" format="color" />
+		<attr name="red" format="color" />
+		<attr name="orange" format="color" />
+		<attr name="yellow" format="color" />
+		<attr name="green" format="color" />
+		<attr name="cyan" format="color" />
+		<attr name="blue" format="color" />
+		<attr name="violet" format="color" />
+		<attr name="white" format="color" />
+								
+	</declare-styleable>
+</resources>

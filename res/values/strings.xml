@@ -7,5 +7,31 @@
     <string name="stringRight">Right Point</string>
     <string name="main_graph">Main Graph</string>
     <string name="equation">y = f(x)</string>
-    
+    <string name="equation_selector">y = f(x)</string>
+	<string name="equation1">y = x ^ 3</string>
+	<string name="equation2">y = |x ^ 2 – 1|</string>
+	<string name="equation3">x ^ (2 / 3) + y ^ (2 / 3) = 1</string>
+	<string name="s_graphColor">Choose f(x) color</string>
+	<string name="s_leftColor">Choose left secant color</string>
+	<string name="s_rightColor">Choose right secant color</string>
+	<string name="exit">Exit</string>
+	<string name="reset">Reset</string>
+	<string name="chooseColor">Choose Color</string>
+	<string name="buttonOk">OK</string>
+	<string name="buttonCancel">Cancel</string>
+	<string name="appStateName">TangentHDState</string>
+	<string name="key">TangentHDSharedPreferences</string>
+	<string-array name="color_array">
+        <item>magenta</item>
+        <item>red</item>
+        <item>orange</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>cyan</item>
+        <item>blue</item>
+        <item>violet</item>
+        <item>white</item>
+    </string-array>
+
+	
 </resources>
